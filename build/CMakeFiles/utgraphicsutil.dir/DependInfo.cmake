@@ -22,7 +22,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../lib"
   "/usr/local/Cellar/glew/2.1.0_1/include"
   "../lib/utgraphicsutil"
-  "../lib/pmdreader"
   "/opt/local/include"
   "../third-party/glm"
   )

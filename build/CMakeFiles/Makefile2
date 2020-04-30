@@ -65,50 +65,13 @@ CMAKE_SOURCE_DIR = /Users/rahulkrishnan/Documents/GitHub/gfx-final
 CMAKE_BINARY_DIR = /Users/rahulkrishnan/Documents/GitHub/gfx-final/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/pmdreader.dir
-
-# All Build rule for target.
-CMakeFiles/pmdreader.dir/all:
-	$(MAKE) -f CMakeFiles/pmdreader.dir/build.make CMakeFiles/pmdreader.dir/depend
-	$(MAKE) -f CMakeFiles/pmdreader.dir/build.make CMakeFiles/pmdreader.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=1,2,3 "Built target pmdreader"
-.PHONY : CMakeFiles/pmdreader.dir/all
-
-# Include target in all.
-all: CMakeFiles/pmdreader.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/pmdreader.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pmdreader.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles 0
-.PHONY : CMakeFiles/pmdreader.dir/rule
-
-# Convenience name for target.
-pmdreader: CMakeFiles/pmdreader.dir/rule
-
-.PHONY : pmdreader
-
-# clean rule for target.
-CMakeFiles/pmdreader.dir/clean:
-	$(MAKE) -f CMakeFiles/pmdreader.dir/build.make CMakeFiles/pmdreader.dir/clean
-.PHONY : CMakeFiles/pmdreader.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/pmdreader.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/utgraphicsutil.dir
 
 # All Build rule for target.
 CMakeFiles/utgraphicsutil.dir/all:
 	$(MAKE) -f CMakeFiles/utgraphicsutil.dir/build.make CMakeFiles/utgraphicsutil.dir/depend
 	$(MAKE) -f CMakeFiles/utgraphicsutil.dir/build.make CMakeFiles/utgraphicsutil.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=12,13,14 "Built target utgraphicsutil"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=7,8,9 "Built target utgraphicsutil"
 .PHONY : CMakeFiles/utgraphicsutil.dir/all
 
 # Include target in all.
@@ -160,11 +123,10 @@ src/preinstall:
 # Target rules for target src/CMakeFiles/skinning.dir
 
 # All Build rule for target.
-src/CMakeFiles/skinning.dir/all: CMakeFiles/pmdreader.dir/all
 src/CMakeFiles/skinning.dir/all: CMakeFiles/utgraphicsutil.dir/all
 	$(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/depend
 	$(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=4,5,6,7,8,9,10,11 "Built target skinning"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target skinning"
 .PHONY : src/CMakeFiles/skinning.dir/all
 
 # Include target in all.
@@ -174,7 +136,7 @@ all: src/CMakeFiles/skinning.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/skinning.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/skinning.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/skinning.dir/rule

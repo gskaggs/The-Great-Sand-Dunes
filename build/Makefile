@@ -111,19 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named pmdreader
-
-# Build rule for target.
-pmdreader: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pmdreader
-.PHONY : pmdreader
-
-# fast build rule for target.
-pmdreader/fast:
-	$(MAKE) -f CMakeFiles/pmdreader.dir/build.make CMakeFiles/pmdreader.dir/build
-.PHONY : pmdreader/fast
-
-#=============================================================================
 # Target rules for targets named utgraphicsutil
 
 # Build rule for target.
@@ -148,60 +135,6 @@ skinning: cmake_check_build_system
 skinning/fast:
 	$(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/build
 .PHONY : skinning/fast
-
-lib/pmdreader/bitmap.o: lib/pmdreader/bitmap.cpp.o
-
-.PHONY : lib/pmdreader/bitmap.o
-
-# target to build an object file
-lib/pmdreader/bitmap.cpp.o:
-	$(MAKE) -f CMakeFiles/pmdreader.dir/build.make CMakeFiles/pmdreader.dir/lib/pmdreader/bitmap.cpp.o
-.PHONY : lib/pmdreader/bitmap.cpp.o
-
-lib/pmdreader/bitmap.i: lib/pmdreader/bitmap.cpp.i
-
-.PHONY : lib/pmdreader/bitmap.i
-
-# target to preprocess a source file
-lib/pmdreader/bitmap.cpp.i:
-	$(MAKE) -f CMakeFiles/pmdreader.dir/build.make CMakeFiles/pmdreader.dir/lib/pmdreader/bitmap.cpp.i
-.PHONY : lib/pmdreader/bitmap.cpp.i
-
-lib/pmdreader/bitmap.s: lib/pmdreader/bitmap.cpp.s
-
-.PHONY : lib/pmdreader/bitmap.s
-
-# target to generate assembly for a file
-lib/pmdreader/bitmap.cpp.s:
-	$(MAKE) -f CMakeFiles/pmdreader.dir/build.make CMakeFiles/pmdreader.dir/lib/pmdreader/bitmap.cpp.s
-.PHONY : lib/pmdreader/bitmap.cpp.s
-
-lib/pmdreader/mmdadapter.o: lib/pmdreader/mmdadapter.cc.o
-
-.PHONY : lib/pmdreader/mmdadapter.o
-
-# target to build an object file
-lib/pmdreader/mmdadapter.cc.o:
-	$(MAKE) -f CMakeFiles/pmdreader.dir/build.make CMakeFiles/pmdreader.dir/lib/pmdreader/mmdadapter.cc.o
-.PHONY : lib/pmdreader/mmdadapter.cc.o
-
-lib/pmdreader/mmdadapter.i: lib/pmdreader/mmdadapter.cc.i
-
-.PHONY : lib/pmdreader/mmdadapter.i
-
-# target to preprocess a source file
-lib/pmdreader/mmdadapter.cc.i:
-	$(MAKE) -f CMakeFiles/pmdreader.dir/build.make CMakeFiles/pmdreader.dir/lib/pmdreader/mmdadapter.cc.i
-.PHONY : lib/pmdreader/mmdadapter.cc.i
-
-lib/pmdreader/mmdadapter.s: lib/pmdreader/mmdadapter.cc.s
-
-.PHONY : lib/pmdreader/mmdadapter.s
-
-# target to generate assembly for a file
-lib/pmdreader/mmdadapter.cc.s:
-	$(MAKE) -f CMakeFiles/pmdreader.dir/build.make CMakeFiles/pmdreader.dir/lib/pmdreader/mmdadapter.cc.s
-.PHONY : lib/pmdreader/mmdadapter.cc.s
 
 lib/utgraphicsutil/debuggl.o: lib/utgraphicsutil/debuggl.cc.o
 
@@ -265,15 +198,8 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... pmdreader"
 	@echo "... utgraphicsutil"
 	@echo "... skinning"
-	@echo "... lib/pmdreader/bitmap.o"
-	@echo "... lib/pmdreader/bitmap.i"
-	@echo "... lib/pmdreader/bitmap.s"
-	@echo "... lib/pmdreader/mmdadapter.o"
-	@echo "... lib/pmdreader/mmdadapter.i"
-	@echo "... lib/pmdreader/mmdadapter.s"
 	@echo "... lib/utgraphicsutil/debuggl.o"
 	@echo "... lib/utgraphicsutil/debuggl.i"
 	@echo "... lib/utgraphicsutil/debuggl.s"

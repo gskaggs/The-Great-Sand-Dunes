@@ -20,7 +20,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../cmake/msvc.cmake"
   "../cmake/openmp.cmake"
   "../cmake/warning.cmake"
-  "../cmake/z-libpmdreader.cmake"
   "../src/CMakeLists.txt"
   "/opt/local/share/cmake-3.14/Modules/CMakeCInformation.cmake"
   "/opt/local/share/cmake-3.14/Modules/CMakeCXXInformation.cmake"
@@ -70,7 +69,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/pmdreader.dir/DependInfo.cmake"
   "CMakeFiles/utgraphicsutil.dir/DependInfo.cmake"
   "src/CMakeFiles/skinning.dir/DependInfo.cmake"
   )

@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/skinning.dir/animation_loader_saver.cc.o"
-  "CMakeFiles/skinning.dir/bone_geometry.cc.o"
   "CMakeFiles/skinning.dir/gui.cc.o"
   "CMakeFiles/skinning.dir/main.cc.o"
   "CMakeFiles/skinning.dir/procedure_geometry.cc.o"

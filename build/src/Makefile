@@ -125,60 +125,6 @@ skinning/fast:
 	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/build
 .PHONY : skinning/fast
 
-animation_loader_saver.o: animation_loader_saver.cc.o
-
-.PHONY : animation_loader_saver.o
-
-# target to build an object file
-animation_loader_saver.cc.o:
-	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/animation_loader_saver.cc.o
-.PHONY : animation_loader_saver.cc.o
-
-animation_loader_saver.i: animation_loader_saver.cc.i
-
-.PHONY : animation_loader_saver.i
-
-# target to preprocess a source file
-animation_loader_saver.cc.i:
-	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/animation_loader_saver.cc.i
-.PHONY : animation_loader_saver.cc.i
-
-animation_loader_saver.s: animation_loader_saver.cc.s
-
-.PHONY : animation_loader_saver.s
-
-# target to generate assembly for a file
-animation_loader_saver.cc.s:
-	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/animation_loader_saver.cc.s
-.PHONY : animation_loader_saver.cc.s
-
-bone_geometry.o: bone_geometry.cc.o
-
-.PHONY : bone_geometry.o
-
-# target to build an object file
-bone_geometry.cc.o:
-	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/bone_geometry.cc.o
-.PHONY : bone_geometry.cc.o
-
-bone_geometry.i: bone_geometry.cc.i
-
-.PHONY : bone_geometry.i
-
-# target to preprocess a source file
-bone_geometry.cc.i:
-	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/bone_geometry.cc.i
-.PHONY : bone_geometry.cc.i
-
-bone_geometry.s: bone_geometry.cc.s
-
-.PHONY : bone_geometry.s
-
-# target to generate assembly for a file
-bone_geometry.cc.s:
-	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/bone_geometry.cc.s
-.PHONY : bone_geometry.cc.s
-
 gui.o: gui.cc.o
 
 .PHONY : gui.o
@@ -323,12 +269,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... skinning"
-	@echo "... animation_loader_saver.o"
-	@echo "... animation_loader_saver.i"
-	@echo "... animation_loader_saver.s"
-	@echo "... bone_geometry.o"
-	@echo "... bone_geometry.i"
-	@echo "... bone_geometry.s"
 	@echo "... gui.o"
 	@echo "... gui.i"
 	@echo "... gui.s"

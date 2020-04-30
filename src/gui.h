@@ -5,8 +5,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <GLFW/glfw3.h>
 
-struct Mesh;
-
 /*
  * Hint: call glUniformMatrix4fv on thest pointers
  */
@@ -18,7 +16,6 @@ class GUI {
 public:
 	GUI(GLFWwindow*, int view_width = -1, int view_height = -1, int preview_height = -1);
 	~GUI();
-	void assignMesh(Mesh*);
 
 	void keyCallback(int key, int scancode, int action, int mods);
 	void mousePosCallback(double mouse_x, double mouse_y);
@@ -34,21 +31,10 @@ public:
 
 	glm::vec3 getCenter() const { return center_; }
 	const glm::vec3& getCamera() const { return eye_; }
-	bool isPoseDirty() const { return pose_changed_; }
-	void clearPose() { pose_changed_ = false; }
 	const float* getLightPositionPtr() const { return &light_position_[0]; }
-	
-	int getCurrentBone() const { return current_bone_; }
-	const int* getCurrentBonePointer() const { return &current_bone_; }
-	bool setCurrentBone(int i);
-
-	bool isTransparent() const { return transparent_; }
-	bool isPlaying() const { return play_; }
-	float getCurrentPlayTime() const;
 
 private:
 	GLFWwindow* window_;
-	Mesh* mesh_;
 
 	int window_width_, window_height_;
 	int view_width_, view_height_;
@@ -57,8 +43,6 @@ private:
 	bool drag_state_ = false;
 	bool fps_mode_ = false;
 	bool pose_changed_ = true;
-	bool transparent_ = false;
-	int current_bone_ = -1;
 	int current_button_ = -1;
 	float roll_speed_ = M_PI / 64.0f;
 	float last_x_ = 0.0f, last_y_ = 0.0f, current_x_ = 0.0f, current_y_ = 0.0f;
@@ -81,8 +65,6 @@ private:
 	glm::mat4 model_matrix_ = glm::mat4(1.0f);
 
 	bool captureWASDUPDOWN(int key, int action);
-
-	bool play_ = false;
 };
 
 #endif

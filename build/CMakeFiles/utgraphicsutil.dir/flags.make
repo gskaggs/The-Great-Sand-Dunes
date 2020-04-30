@@ -6,5 +6,5 @@ CXX_FLAGS = --std=c++14 -g -fdiagnostics-color=always -fopenmp -Wall -Wno-reorde
 
 CXX_DEFINES = -DGLM_ENABLE_EXPERIMENTAL -DGLM_FORCE_RADIANS=1 -DGLM_FORCE_SIZE_FUNC=1
 
-CXX_INCLUDES = -I/usr/local/include -I/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib -I/usr/local/Cellar/glew/2.1.0_1/include -I/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil -I/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/pmdreader -isystem /opt/local/include -isystem /Users/rahulkrishnan/Documents/GitHub/gfx-final/third-party/glm 
+CXX_INCLUDES = -I/usr/local/include -I/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib -I/usr/local/Cellar/glew/2.1.0_1/include -I/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil -isystem /opt/local/include -isystem /Users/rahulkrishnan/Documents/GitHub/gfx-final/third-party/glm 
 

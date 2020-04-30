@@ -1,7 +1,6 @@
 #include "gui.h"
 #include "config.h"
 #include <jpegio.h>
-#include "bone_geometry.h"
 #include <iostream>
 #include <algorithm>
 #include <debuggl.h>
@@ -41,12 +40,6 @@ GUI::~GUI()
 {
 }
 
-void GUI::assignMesh(Mesh* mesh)
-{
-	mesh_ = mesh;
-	center_ = mesh_->getCenter();
-}
-
 void GUI::keyCallback(int key, int scancode, int action, int mods)
 {
 #if 0
@@ -60,11 +53,6 @@ void GUI::keyCallback(int key, int scancode, int action, int mods)
 	if (key == GLFW_KEY_J && action == GLFW_RELEASE) {
 		//FIXME save out a screenshot using SaveJPEG
 	}
-	if (key == GLFW_KEY_S && (mods & GLFW_MOD_CONTROL)) {
-		if (action == GLFW_RELEASE)
-			mesh_->saveAnimationTo("animation.json");
-		return ;
-	}
 
 	if (mods == 0 && captureWASDUPDOWN(key, action))
 		return ;
@@ -74,22 +62,9 @@ void GUI::keyCallback(int key, int scancode, int action, int mods)
 			roll_speed = -roll_speed_;
 		else
 			roll_speed = roll_speed_;
-		// FIXME: actually roll the bone here
 	} else if (key == GLFW_KEY_C && action != GLFW_RELEASE) {
 		fps_mode_ = !fps_mode_;
-	} else if (key == GLFW_KEY_LEFT_BRACKET && action == GLFW_RELEASE) {
-		current_bone_--;
-		current_bone_ += mesh_->getNumberOfBones();
-		current_bone_ %= mesh_->getNumberOfBones();
-	} else if (key == GLFW_KEY_RIGHT_BRACKET && action == GLFW_RELEASE) {
-		current_bone_++;
-		current_bone_ += mesh_->getNumberOfBones();
-		current_bone_ %= mesh_->getNumberOfBones();
-	} else if (key == GLFW_KEY_T && action != GLFW_RELEASE) {
-		transparent_ = !transparent_;
-	}
-
-	// FIXME: implement other controls here.
+    }
 }
 
 void GUI::mousePosCallback(double mouse_x, double mouse_y)
@@ -110,7 +85,6 @@ void GUI::mousePosCallback(double mouse_x, double mouse_y)
 	glm::uvec4 viewport = glm::uvec4(0, 0, view_width_, view_height_);
 
 	bool drag_camera = drag_state_ && current_button_ == GLFW_MOUSE_BUTTON_RIGHT;
-	bool drag_bone = drag_state_ && current_button_ == GLFW_MOUSE_BUTTON_LEFT;
 
 	if (drag_camera) {
 		glm::vec3 axis = glm::normalize(
@@ -122,13 +96,8 @@ void GUI::mousePosCallback(double mouse_x, double mouse_y)
 		tangent_ = glm::column(orientation_, 0);
 		up_ = glm::column(orientation_, 1);
 		look_ = glm::column(orientation_, 2);
-	} else if (drag_bone && current_bone_ != -1) {
-		// FIXME: Handle bone rotation
-		return ;
 	}
 
-	// FIXME: highlight bones that have been moused over
-	current_bone_ = -1;
 }
 
 void GUI::mouseButtonCallback(int button, int action, int mods)
@@ -138,14 +107,12 @@ void GUI::mouseButtonCallback(int button, int action, int mods)
 		current_button_ = button;
 		return ;
 	}
-	// FIXME: Key Frame Selection
 }
 
 void GUI::mouseScrollCallback(double dx, double dy)
 {
 	if (current_x_ < view_width_)
 		return;
-	// FIXME: Mouse Scrolling
 }
 
 void GUI::updateMatrices()
@@ -173,20 +140,6 @@ MatrixPointers GUI::getMatrixPointers() const
 	ret.view = &view_matrix_;
 	return ret;
 }
-
-bool GUI::setCurrentBone(int i)
-{
-	if (i < 0 || i >= mesh_->getNumberOfBones())
-		return false;
-	current_bone_ = i;
-	return true;
-}
-
-float GUI::getCurrentPlayTime() const
-{
-	return 0.0f;
-}
-
 
 bool GUI::captureWASDUPDOWN(int key, int action)
 {

@@ -4,8 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/animation_loader_saver.cc" "/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src/CMakeFiles/skinning.dir/animation_loader_saver.cc.o"
-  "/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/bone_geometry.cc" "/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src/CMakeFiles/skinning.dir/bone_geometry.cc.o"
   "/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/gui.cc" "/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src/CMakeFiles/skinning.dir/gui.cc.o"
   "/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/main.cc" "/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src/CMakeFiles/skinning.dir/main.cc.o"
   "/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/procedure_geometry.cc" "/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src/CMakeFiles/skinning.dir/procedure_geometry.cc.o"
@@ -27,7 +25,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../lib"
   "/usr/local/Cellar/glew/2.1.0_1/include"
   "../lib/utgraphicsutil"
-  "../lib/pmdreader"
   "../third-party/glm"
   "/usr/local/include"
   )
@@ -35,7 +32,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles/utgraphicsutil.dir/DependInfo.cmake"
-  "/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles/pmdreader.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
