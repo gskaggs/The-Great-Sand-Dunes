@@ -1,0 +1,7 @@
+/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles/rebuild_cache.dir
+/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles/edit_cache.dir
+/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles/pmdreader.dir
+/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles/utgraphicsutil.dir
+/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src/CMakeFiles/rebuild_cache.dir
+/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src/CMakeFiles/edit_cache.dir
+/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src/CMakeFiles/skinning.dir
