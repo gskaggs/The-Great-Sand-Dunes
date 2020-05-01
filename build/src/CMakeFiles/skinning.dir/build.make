@@ -57,9 +57,22 @@ include src/CMakeFiles/skinning.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/CMakeFiles/skinning.dir/flags.make
 
+src/CMakeFiles/skinning.dir/desert.cc.o: src/CMakeFiles/skinning.dir/flags.make
+src/CMakeFiles/skinning.dir/desert.cc.o: ../src/desert.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/skinning.dir/desert.cc.o"
+	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src && /usr/local/Cellar/gcc/9.3.0/bin/g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/desert.cc.o -c /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/desert.cc
+
+src/CMakeFiles/skinning.dir/desert.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skinning.dir/desert.cc.i"
+	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src && /usr/local/Cellar/gcc/9.3.0/bin/g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/desert.cc > CMakeFiles/skinning.dir/desert.cc.i
+
+src/CMakeFiles/skinning.dir/desert.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skinning.dir/desert.cc.s"
+	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src && /usr/local/Cellar/gcc/9.3.0/bin/g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/desert.cc -o CMakeFiles/skinning.dir/desert.cc.s
+
 src/CMakeFiles/skinning.dir/gui.cc.o: src/CMakeFiles/skinning.dir/flags.make
 src/CMakeFiles/skinning.dir/gui.cc.o: ../src/gui.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/skinning.dir/gui.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/skinning.dir/gui.cc.o"
 	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src && /usr/local/Cellar/gcc/9.3.0/bin/g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/gui.cc.o -c /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/gui.cc
 
 src/CMakeFiles/skinning.dir/gui.cc.i: cmake_force
@@ -72,7 +85,7 @@ src/CMakeFiles/skinning.dir/gui.cc.s: cmake_force
 
 src/CMakeFiles/skinning.dir/main.cc.o: src/CMakeFiles/skinning.dir/flags.make
 src/CMakeFiles/skinning.dir/main.cc.o: ../src/main.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/skinning.dir/main.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/skinning.dir/main.cc.o"
 	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src && /usr/local/Cellar/gcc/9.3.0/bin/g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/main.cc.o -c /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/main.cc
 
 src/CMakeFiles/skinning.dir/main.cc.i: cmake_force
@@ -85,7 +98,7 @@ src/CMakeFiles/skinning.dir/main.cc.s: cmake_force
 
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.o: src/CMakeFiles/skinning.dir/flags.make
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.o: ../src/procedure_geometry.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/skinning.dir/procedure_geometry.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/skinning.dir/procedure_geometry.cc.o"
 	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src && /usr/local/Cellar/gcc/9.3.0/bin/g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/procedure_geometry.cc.o -c /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/procedure_geometry.cc
 
 src/CMakeFiles/skinning.dir/procedure_geometry.cc.i: cmake_force
@@ -98,7 +111,7 @@ src/CMakeFiles/skinning.dir/procedure_geometry.cc.s: cmake_force
 
 src/CMakeFiles/skinning.dir/render_pass.cc.o: src/CMakeFiles/skinning.dir/flags.make
 src/CMakeFiles/skinning.dir/render_pass.cc.o: ../src/render_pass.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/skinning.dir/render_pass.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/skinning.dir/render_pass.cc.o"
 	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src && /usr/local/Cellar/gcc/9.3.0/bin/g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/render_pass.cc.o -c /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/render_pass.cc
 
 src/CMakeFiles/skinning.dir/render_pass.cc.i: cmake_force
@@ -111,7 +124,7 @@ src/CMakeFiles/skinning.dir/render_pass.cc.s: cmake_force
 
 src/CMakeFiles/skinning.dir/shader_uniform.cc.o: src/CMakeFiles/skinning.dir/flags.make
 src/CMakeFiles/skinning.dir/shader_uniform.cc.o: ../src/shader_uniform.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/skinning.dir/shader_uniform.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/skinning.dir/shader_uniform.cc.o"
 	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src && /usr/local/Cellar/gcc/9.3.0/bin/g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skinning.dir/shader_uniform.cc.o -c /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/shader_uniform.cc
 
 src/CMakeFiles/skinning.dir/shader_uniform.cc.i: cmake_force
@@ -124,6 +137,7 @@ src/CMakeFiles/skinning.dir/shader_uniform.cc.s: cmake_force
 
 # Object files for target skinning
 skinning_OBJECTS = \
+"CMakeFiles/skinning.dir/desert.cc.o" \
 "CMakeFiles/skinning.dir/gui.cc.o" \
 "CMakeFiles/skinning.dir/main.cc.o" \
 "CMakeFiles/skinning.dir/procedure_geometry.cc.o" \
@@ -133,6 +147,7 @@ skinning_OBJECTS = \
 # External object files for target skinning
 skinning_EXTERNAL_OBJECTS =
 
+bin/skinning: src/CMakeFiles/skinning.dir/desert.cc.o
 bin/skinning: src/CMakeFiles/skinning.dir/gui.cc.o
 bin/skinning: src/CMakeFiles/skinning.dir/main.cc.o
 bin/skinning: src/CMakeFiles/skinning.dir/procedure_geometry.cc.o
@@ -147,7 +162,7 @@ bin/skinning: /opt/local/lib/libjpeg.dylib
 bin/skinning: /usr/local/Cellar/glew/2.1.0_1/lib/libGLEW.a
 bin/skinning: /opt/local/lib/libjpeg.dylib
 bin/skinning: src/CMakeFiles/skinning.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ../bin/skinning"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable ../bin/skinning"
 	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/skinning.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

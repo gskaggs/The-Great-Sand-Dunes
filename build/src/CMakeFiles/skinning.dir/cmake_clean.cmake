@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/skinning.dir/desert.cc.o"
   "CMakeFiles/skinning.dir/gui.cc.o"
   "CMakeFiles/skinning.dir/main.cc.o"
   "CMakeFiles/skinning.dir/procedure_geometry.cc.o"

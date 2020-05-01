@@ -1576,6 +1576,20 @@ detail/func_vector_relational.inl
 
 /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/config.h
 
+/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/desert.h
+iostream
+-
+vector
+-
+config.h
+/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/config.h
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
+-
+GLFW/glfw3.h
+-
+
 /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/gui.h
 glm/glm.hpp
 -
@@ -1595,6 +1609,8 @@ config.h
 /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/config.h
 gui.h
 /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/gui.h
+desert.h
+/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/desert.h
 algorithm
 -
 fstream
@@ -1625,10 +1641,6 @@ shaders/default.frag
 /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/shaders/default.frag
 shaders/floor.frag
 /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/shaders/floor.frag
-shaders/bone.vert
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/shaders/bone.vert
-shaders/bone.frag
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/shaders/bone.frag
 
 /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/procedure_geometry.h
 vector
@@ -1671,10 +1683,6 @@ glm/gtx/io.hpp
 -
 
 /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/shaders/blending.vert
-
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/shaders/bone.frag
-
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/src/shaders/bone.vert
 
 /Users/rahulkrishnan/Documents/GitHub/gfx-final/src/shaders/default.frag
 

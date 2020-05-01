@@ -125,6 +125,33 @@ skinning/fast:
 	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/build
 .PHONY : skinning/fast
 
+desert.o: desert.cc.o
+
+.PHONY : desert.o
+
+# target to build an object file
+desert.cc.o:
+	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/desert.cc.o
+.PHONY : desert.cc.o
+
+desert.i: desert.cc.i
+
+.PHONY : desert.i
+
+# target to preprocess a source file
+desert.cc.i:
+	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/desert.cc.i
+.PHONY : desert.cc.i
+
+desert.s: desert.cc.s
+
+.PHONY : desert.s
+
+# target to generate assembly for a file
+desert.cc.s:
+	cd /Users/rahulkrishnan/Documents/GitHub/gfx-final/build && $(MAKE) -f src/CMakeFiles/skinning.dir/build.make src/CMakeFiles/skinning.dir/desert.cc.s
+.PHONY : desert.cc.s
+
 gui.o: gui.cc.o
 
 .PHONY : gui.o
@@ -269,6 +296,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... skinning"
+	@echo "... desert.o"
+	@echo "... desert.i"
+	@echo "... desert.s"
 	@echo "... gui.o"
 	@echo "... gui.i"
 	@echo "... gui.s"

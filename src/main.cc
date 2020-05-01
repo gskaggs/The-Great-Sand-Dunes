@@ -4,6 +4,7 @@
 #include "render_pass.h"
 #include "config.h"
 #include "gui.h"
+#include "desert.h"
 
 #include <algorithm>
 #include <fstream>
@@ -38,14 +39,6 @@ const char* fragment_shader =
 
 const char* floor_fragment_shader =
 #include "shaders/floor.frag"
-;
-
-const char* bone_vertex_shader =
-#include "shaders/bone.vert"
-;
-
-const char* bone_fragment_shader =
-#include "shaders/bone.frag"
 ;
 
 void ErrorCallback(int error, const char* description) {
@@ -84,9 +77,11 @@ int main(int argc, char* argv[])
 
 	std::vector<glm::vec4> floor_vertices;
 	std::vector<glm::uvec3> floor_faces;
-	create_floor(floor_vertices, floor_faces);
 
-	glm::vec4 light_position = glm::vec4(0.0f, 100.0f, 0.0f, 1.0f);
+    Desert desert(5, 5);
+    desert.getFloor(floor_vertices, floor_faces);
+	
+    glm::vec4 light_position = glm::vec4(0.0f, 100.0f, 0.0f, 1.0f);
 	MatrixPointers mats; // Define MatrixPointers here for lambda to capture
 
 	/*
