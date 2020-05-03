@@ -10,17 +10,25 @@
 
 double e = 2.71828;
 int numParticles = 0;
+int interParticles = 0;
+double terminalV = .05; 
 
 glm::dvec3 windSpeed(glm::dvec3 P) {
-    return windDir * ((u_star / K) * log(P[1]/z_0)/log(e));   
+    //return windDir * ((u_star / K) * log(P[1]/z_0)/log(e));   
+    return 0.2 * windDir;
 }
 
 void Particle::update() {
     P += V*delta_t;
     glm::dvec3 U = windSpeed(P);
+    std::cout << "U: " << U[0] << " " << U[1] << " " << U[2] << std::endl;
+    std::cout << "V: " << V[0] << " " << V[1] << " " << V[2] << std::endl;
     glm::dvec3 delta_V = U - V;
-    glm::dvec3 F_wind = B * glm::length(delta_V) * delta_V; 
+    glm::dvec3 F_wind = B * delta_V; 
+    F_wind = glm::clamp(F_wind, -terminalV, terminalV);
+    std::cout << "F_wind: " << F_wind[0] << " " << F_wind[1] << " " << F_wind[2] << std::endl;
     glm::dvec3 F_g = glm::dvec3(0, -1, 0) * gravity;
+    std::cout << "F_g: " << F_g[0] << " " << F_g[1] << " " << F_g[2] << std::endl;
     V += (F_wind + F_g)*(delta_t/mass);
 }
 
@@ -36,7 +44,7 @@ Floor::Floor(int w, int h) : height(w, std::vector<double>(h)),
        //}
        for(int i = 0; i < w; i++) {
             for(int j = 0; j < h; j++) {
-                height[i][j] = grain_size*(rand()%100 + 200);
+                height[i][j] = grain_size*(rand()%20 + 200);
             }
        }
        updateHeight();
@@ -82,7 +90,7 @@ bool Floor::intersect(Particle* p) {
     }
 
     if(h >= y) {
-
+        p->P[1] = h;
         glm::dvec3 V_n = glm::dot(p->V, N) * N;
         glm::dvec3 V_t = p->V - V_n;
         p->V = - V_n * fatten + V_t * ffrac;
@@ -102,6 +110,7 @@ void Floor::updateHeight() {
     for(int i = 0; i < hmap_width; i++) {
         for(int j = 0; j < hmap_height; j++) {
             height[i][j] += (deposition[i][j] - saltation[i][j]) * grain_size;
+            saltation[i][j] = 0;
             deposition[i][j] = 0;
         }
     }
@@ -112,13 +121,15 @@ void Floor::saltate(std::vector<Particle*>& newParticles) {
     for(int i = 0; i < hmap_width; i++) {
         for(int j = 0; j < hmap_height; j++) {
              int rando = rand() % 100 + 1;
-             if(rando < Q*100 && height[i][j] > 0) {
+             if(numParticles >= 1) return;
+             if(rando < Q*100 && height[i][j] > 1e-5) {
                 // create particle
                 Particle* p = new Particle;
                 p->P = position(i,j);
                 p->V = initV();
                 newParticles.push_back(p);
                 saltation[i][j] = 1;
+                return;
              } else {
                 saltation[i][j] = 0;
             }
@@ -133,9 +144,9 @@ glm::dvec3 Floor::position(int i, int j) {
 glm::dvec3 Floor::initV() {
     double v_x, v_y, v_z;
     v_y = B * u_star;
-    double phi = (rand() % 10000)*(PI/2)/10000.0;
-    if(phi < 0 || phi > PI/2) std::cerr << "oops" << std::endl;
-
+    double phi = ((rand() % 69) + 21)*(2*PI/360);
+    if(sin(phi) < 0.3 || phi > PI/2) std::cerr << "oops" << std::endl;
+    if(phi < 1e-5) phi = 0.1;
     double V_ = v_y / sin(phi);
     v_x = V_ * cos(phi) * cos(psi);
     v_z = V_ * cos(phi) * sin(psi);
@@ -155,8 +166,15 @@ void Desert::updateSimulation() {
     }
 
     curr = head->next;
+    if(curr) {
+        std::cout << "position: (" << curr->P[0] << ", " << curr->P[1] << ", " << curr->P[2] << "); ";
+        std::cout << "velocity: <" << curr->V[0] << ", " << curr->V[1] << ", " << curr->V[2] << ">";
+        std::cout << "nuMPARITLCULAR "<< numParticles << std::endl;
+    }
     while(curr) {
         if(floor.intersect(curr)) {
+             //std::cout << "intersecteD" << std::endl;
+             interParticles++;
              // delete particle
              Particle* prev = curr->prev;
              prev->next = curr->next;
@@ -213,4 +231,5 @@ void Desert::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& fa
     faces.clear();
     floor.getFloor(verts, faces);
     std::cout << "PARTICAULS: " << numParticles << std::endl;
+    std::cout << "INTERPARTI: " << interParticles << std::endl;
 }
