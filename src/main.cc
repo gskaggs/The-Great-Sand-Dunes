@@ -78,7 +78,10 @@ int main(int argc, char* argv[])
 	std::vector<glm::vec4> floor_vertices;
 	std::vector<glm::uvec3> floor_faces;
 
-    Desert desert(5, 5);
+    Desert desert(hmap_width, hmap_height);
+    for(double t = 0; t < end_time; t += delta_t) {
+        desert.updateSimulation();
+    }
     desert.getFloor(floor_vertices, floor_faces);
 	
     glm::vec4 light_position = glm::vec4(0.0f, 100.0f, 0.0f, 1.0f);

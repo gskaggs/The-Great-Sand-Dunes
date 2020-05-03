@@ -7,7 +7,7 @@
 #include <GLFW/glfw3.h>
 
 struct Particle {
-    glm::vec3 P, V; //position, velocity
+    glm::dvec3 P, V; //position, velocity
     Particle *next = nullptr, *prev = nullptr;
     
     void update();
@@ -24,17 +24,20 @@ public:
     void updateHeight(); 
     //Simulate particles entering air
     void saltate(std::vector<Particle*>& newParticles);
-
+    void getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& faces);
 private:
     std::vector<std::vector<double>> height;
     std::vector<std::vector<int>> saltation, deposition;
+
+    glm::dvec3 position(int i, int j);
+    glm::dvec3 initV();
 };
 
 class Desert {
 public:
     Desert(int width, int height);
     
-    void updateSimulation(double dt);
+    void updateSimulation();
     void getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& faces);
 
 private:
