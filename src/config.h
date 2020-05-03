@@ -33,7 +33,7 @@ const float hmap_resolution = 1;
 const int hmap_width = world_width * hmap_resolution, 
           hmap_height = world_height * hmap_resolution;
 const double delta_t = 0.1;
-const double end_time = 50;
+const double end_time = 100;
 
 //const int num_particles = 50000*hmap_resolution;
 const double grain_size = 0.15;
@@ -43,12 +43,12 @@ const double Q = 0.5; // saltation probability
 
 const double psi = 45*PI/180;
 const glm::dvec3 windDir = glm::dvec3(cos(psi),0,sin(psi));
-const double K = 1;
-const double z_0 = 50;
+const double K = 0.4;
+const double z_0 = 0.005;
 const double mass = 0.1;
 const double gravity = mass * 9.8;
 
-const double fatten = 0.5;
-const double ffrac = 0.5;
+const double fatten = 0.4;
+const double ffrac = 0.2;
 const double jepsilon = 0.1;
 #endif

@@ -9,6 +9,7 @@
 #include <GLFW/glfw3.h>
 
 double e = 2.71828;
+int numParticles = 0;
 
 glm::dvec3 windSpeed(glm::dvec3 P) {
     return windDir * ((u_star / K) * log(P[1]/z_0)/log(e));   
@@ -35,7 +36,7 @@ Floor::Floor(int w, int h) : height(w, std::vector<double>(h)),
        //}
        for(int i = 0; i < w; i++) {
             for(int j = 0; j < h; j++) {
-                height[i][j] = grain_size/10*(rand()%100 + 5);
+                height[i][j] = grain_size*(rand()%100 + 200);
             }
        }
        updateHeight();
@@ -55,7 +56,7 @@ bool Floor::intersect(Particle* p) {
         if(r >= hmap_width - 1) p->P[0] = 0;
         if(c >= hmap_height - 1) p->P[2] = 0;
         
-        return true;
+        return false; 
     }
 
     glm::dvec3 N = glm::dvec3(0);
@@ -165,6 +166,7 @@ void Desert::updateSimulation() {
             
             delete curr;
             curr = prev;
+            numParticles--;
         }
         curr = curr->next;
     }
@@ -172,6 +174,7 @@ void Desert::updateSimulation() {
     std::vector<Particle*> newParticles;
     floor.saltate(newParticles);
     for(Particle* part : newParticles) {
+        numParticles++;
         if(!head->next) {
             head->next = part;
             part->prev = head;
@@ -194,12 +197,14 @@ void Floor::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& fac
     for(int i = 0 ; i < hmap_width; i++) {
         for(int j = 0; j < hmap_height; j++) {
             verts.push_back(glm::vec4(position(i,j), 1));
+            std::cout << height[i][j] << " ";
         
             if(i+1 < hmap_width && j+1 < hmap_height) {
                 faces.push_back(glm::uvec3(v_coord(i,j), v_coord(i, j+1), v_coord(i+1, j)));
                 faces.push_back(glm::uvec3(v_coord(i,j+1), v_coord(i+1, j+1), v_coord(i+1, j)));
             }
         }
+        std::cout << std::endl;
     }
 }
 
@@ -207,4 +212,5 @@ void Desert::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& fa
     verts.clear();
     faces.clear();
     floor.getFloor(verts, faces);
+    std::cout << "PARTICAULS: " << numParticles << std::endl;
 }
