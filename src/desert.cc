@@ -11,24 +11,27 @@
 double e = 2.71828;
 int numParticles = 0;
 int interParticles = 0;
-double terminalV = .05; 
+int bounce = 0;
+int died = 0;
+double sa = PI/8*grain_size*grain_size;
+double cds = 0.48;
+double rho = 1.225;
 
 glm::dvec3 windSpeed(glm::dvec3 P) {
-    //return windDir * ((u_star / K) * log(P[1]/z_0)/log(e));   
-    return 0.2 * windDir;
+    return windDir * ((u_star / K) * log(P[1]/z_0)/log(e)) * 5.0;   
+    //return 0.2 * windDir;
 }
 
 void Particle::update() {
     P += V*delta_t;
     glm::dvec3 U = windSpeed(P);
-    std::cout << "U: " << U[0] << " " << U[1] << " " << U[2] << std::endl;
-    std::cout << "V: " << V[0] << " " << V[1] << " " << V[2] << std::endl;
+    //std::cout << "U: " << U[0] << " " << U[1] << " " << U[2] << std::endl;
+    //std::cout << "V: " << V[0] << " " << V[1] << " " << V[2] << std::endl;
     glm::dvec3 delta_V = U - V;
-    glm::dvec3 F_wind = B * delta_V; 
-    F_wind = glm::clamp(F_wind, -terminalV, terminalV);
-    std::cout << "F_wind: " << F_wind[0] << " " << F_wind[1] << " " << F_wind[2] << std::endl;
+    glm::dvec3 F_wind = rho * sa * cds * glm::length(delta_V) * delta_V; 
+    //std::cout << "a_wind: " << F_wind[0]/mass << " " << F_wind[1]/mass << " " << F_wind[2]/mass << std::endl;
     glm::dvec3 F_g = glm::dvec3(0, -1, 0) * gravity;
-    std::cout << "F_g: " << F_g[0] << " " << F_g[1] << " " << F_g[2] << std::endl;
+    //std::cout << "a_g: " << F_g[0]/mass << " " << F_g[1]/mass << " " << F_g[2]/mass << std::endl;
     V += (F_wind + F_g)*(delta_t/mass);
 }
 
@@ -44,7 +47,8 @@ Floor::Floor(int w, int h) : height(w, std::vector<double>(h)),
        //}
        for(int i = 0; i < w; i++) {
             for(int j = 0; j < h; j++) {
-                height[i][j] = grain_size*(rand()%20 + 200);
+                //height[i][j] = grain_size*(rand()%800 + 200);
+                height[i][j] = grain_size*500;
             }
        }
        updateHeight();
@@ -61,18 +65,21 @@ bool Floor::intersect(Particle* p) {
         if(r < 0) p->P[0] = world_width-1;
         if(c < 0) p->P[2] = world_height-1; 
 
-        if(r >= hmap_width - 1) p->P[0] = 0;
-        if(c >= hmap_height - 1) p->P[2] = 0;
-        
+        if(r >= hmap_width - 1) p->P[0] = p->P[0] = 0;
+        if(c >= hmap_height - 1) p->P[2] = p->P[2] = 0;
+        died++;
+
+        p->P[1] = grain_size*1500;
         return false; 
     }
 
     glm::dvec3 N = glm::dvec3(0);
-
+    h = (x-r)*(z-c)*height[r][c] + (r+1-x)*(z-c)*height[r+1][c] 
+        + (x-r)*(c+1-z)*height[r][c+1] + (r+1-x)*(c+1-z)*height[r+1][c+1];
     if(x-r + z-c < r+1-x + c+1-z) {
         //triangle 1
-        h = height[r][c] + height[r+1][c] + height[r][c+1];
-        h /= 3;
+        //h = height[r][c] + height[r+1][c] + height[r][c+1];
+        //h /= 3;
 
         glm::dvec3 v1 = position(r,c+1) - position(r,c);
         glm::dvec3 v2 = position(r+1,c) - position(r,c);
@@ -80,8 +87,8 @@ bool Floor::intersect(Particle* p) {
         if(glm::dot(N, glm::dvec3(0,1,0)) < 0) std::cerr << "oops1" << std::endl;
     } else {
         //triangle 2
-        h = height[r+1][c] + height[r][c+1] + height[r+1][c+1];
-        h /= 3;
+        //h = height[r+1][c] + height[r][c+1] + height[r+1][c+1];
+        //h /= 3;
 
         glm::dvec3 v1 = position(r+1, c+1) - position(r, c+1);
         glm::dvec3 v2 = position(r+1, c) - position(r, c+1);
@@ -95,11 +102,21 @@ bool Floor::intersect(Particle* p) {
         glm::dvec3 V_t = p->V - V_n;
         p->V = - V_n * fatten + V_t * ffrac;
         
-        if(glm::length(p->V) > jepsilon) return false;
+        bounce++;
+        if(glm::length(p->V) > jepsilon) {
+            //std::cout << "BOUNCEDDD--------------------------------------------------------" << std::endl;
+            return false;
+        }
+        bounce--;
 
-        if(x-r > 0.5) r++;
-        if(z-c > 0.5) c++;
-        deposition[r][c]++;
+        //if(x-r > 0.5) r++;
+        //if(z-c > 0.5) c++;
+        deposition[r][c]+= (x-r)*(z-c);
+        deposition[r+1][c]+= (r+1-x)*(z-c);
+        deposition[r][c+1]+= (x-r)*(c+1-z);
+        deposition[r+1][c+1]+= (r+1-x)*(c+1-z);
+        interParticles++;
+        //std::cout << "INTERSECTED--------------------------------------------------------" << std::endl;
         return true;
     } else {
         return false;
@@ -121,7 +138,7 @@ void Floor::saltate(std::vector<Particle*>& newParticles) {
     for(int i = 0; i < hmap_width; i++) {
         for(int j = 0; j < hmap_height; j++) {
              int rando = rand() % 100 + 1;
-             if(numParticles >= 1) return;
+             //if(numParticles >= 1) return;
              if(rando < Q*100 && height[i][j] > 1e-5) {
                 // create particle
                 Particle* p = new Particle;
@@ -129,7 +146,7 @@ void Floor::saltate(std::vector<Particle*>& newParticles) {
                 p->V = initV();
                 newParticles.push_back(p);
                 saltation[i][j] = 1;
-                return;
+                //return;
              } else {
                 saltation[i][j] = 0;
             }
@@ -166,15 +183,14 @@ void Desert::updateSimulation() {
     }
 
     curr = head->next;
-    if(curr) {
+    /*if(curr) {
         std::cout << "position: (" << curr->P[0] << ", " << curr->P[1] << ", " << curr->P[2] << "); ";
         std::cout << "velocity: <" << curr->V[0] << ", " << curr->V[1] << ", " << curr->V[2] << ">";
         std::cout << "nuMPARITLCULAR "<< numParticles << std::endl;
-    }
+    }*/
     while(curr) {
         if(floor.intersect(curr)) {
-             //std::cout << "intersecteD" << std::endl;
-             interParticles++;
+             //interParticles++;
              // delete particle
              Particle* prev = curr->prev;
              prev->next = curr->next;
@@ -232,4 +248,6 @@ void Desert::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& fa
     floor.getFloor(verts, faces);
     std::cout << "PARTICAULS: " << numParticles << std::endl;
     std::cout << "INTERPARTI: " << interParticles << std::endl;
+    std::cout << "BOONCY: " << bounce << std::endl;
+    std::cout << "DOOOD: " << died << std::endl;
 }

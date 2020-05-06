@@ -36,8 +36,8 @@ const double delta_t = 0.01;
 const double end_time = 10;
 
 //const int num_particles = 50000*hmap_resolution;
-const double grain_size = 0.15;
-const double u_star = 0.4; //friction velocity
+const double grain_size = 0.0015;
+const double u_star = 0.2; //friction velocity
 const double B = 1.5; // [0.8, 2] wind constant
 const double Q = 0.5; // saltation probability
 
@@ -45,10 +45,10 @@ const double psi = 45*PI/180;
 const glm::dvec3 windDir = glm::dvec3(cos(psi),0,sin(psi));
 const double K = 0.4;
 const double z_0 = 0.005;
-const double mass = 0.001;
-const double gravity = mass * 20;
+const double mass = 4.0/24 * PI * grain_size * grain_size * grain_size * 1631; 
+const double gravity = mass * .98;
 
-const double fatten = 0;
-const double ffrac = 0.0002;
-const double jepsilon = 1;
+const double fatten = 0.02;
+const double ffrac = 0.03;
+const double jepsilon = 0.1;
 #endif
