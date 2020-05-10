@@ -277,17 +277,11 @@ OpenMP_C_LIB_NAMES:STRING=gomp
 //Path to the gomp library for OpenMP
 OpenMP_gomp_LIBRARY:FILEPATH=/usr/local/Cellar/gcc/9.3.0/lib/gcc/9/libgomp.dylib
 
-//pkg-config executable
-PKG_CONFIG_EXECUTABLE:FILEPATH=/opt/local/bin/pkg-config
-
 //The directory containing a CMake configuration file for glfw3.
 glfw3_DIR:PATH=/usr/local/lib/cmake/glfw3
 
 //The directory containing a CMake configuration file for glm.
 glm_DIR:PATH=glm_DIR-NOTFOUND
-
-//Dependencies for the target
-pmdreader_LIB_DEPENDS:STATIC=general;/usr/local/Cellar/glew/2.1.0_1/lib/libGLEW.a;
 
 //Dependencies for the target
 utgraphicsutil_LIB_DEPENDS:STATIC=general;/usr/local/Cellar/glew/2.1.0_1/lib/libGLEW.a;general;/opt/local/lib/libjpeg.dylib;
@@ -440,38 +434,12 @@ FIND_PACKAGE_MESSAGE_DETAILS_GLEW:INTERNAL=[/usr/local/include][/usr/local/lib/l
 FIND_PACKAGE_MESSAGE_DETAILS_JPEG:INTERNAL=[/opt/local/lib/libjpeg.dylib][/opt/local/include][v90()]
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework][/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework][c ][v()]
-//Details about finding PkgConfig
-FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/opt/local/bin/pkg-config][v0.29.2()]
 //ADVANCED property for variable: GLEW_INCLUDE_DIR
 GLEW_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GLEW_LIBRARY_DEBUG
 GLEW_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GLEW_LIBRARY_RELEASE
 GLEW_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-GLFW3_CFLAGS:INTERNAL=
-GLFW3_CFLAGS_I:INTERNAL=
-GLFW3_CFLAGS_OTHER:INTERNAL=
-GLFW3_FOUND:INTERNAL=
-GLFW3_INCLUDEDIR:INTERNAL=
-GLFW3_LIBDIR:INTERNAL=
-GLFW3_LIBS:INTERNAL=
-GLFW3_LIBS_L:INTERNAL=
-GLFW3_LIBS_OTHER:INTERNAL=
-GLFW3_LIBS_PATHS:INTERNAL=
-GLFW3_PREFIX:INTERNAL=
-GLFW3_STATIC_CFLAGS:INTERNAL=
-GLFW3_STATIC_CFLAGS_I:INTERNAL=
-GLFW3_STATIC_CFLAGS_OTHER:INTERNAL=
-GLFW3_STATIC_LIBDIR:INTERNAL=
-GLFW3_STATIC_LIBS:INTERNAL=
-GLFW3_STATIC_LIBS_L:INTERNAL=
-GLFW3_STATIC_LIBS_OTHER:INTERNAL=
-GLFW3_STATIC_LIBS_PATHS:INTERNAL=
-GLFW3_VERSION:INTERNAL=
-GLFW3_glfw3_INCLUDEDIR:INTERNAL=
-GLFW3_glfw3_LIBDIR:INTERNAL=
-GLFW3_glfw3_PREFIX:INTERNAL=
-GLFW3_glfw3_VERSION:INTERNAL=
 //ADVANCED property for variable: JPEG_INCLUDE_DIR
 JPEG_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: JPEG_LIBRARY_DEBUG
@@ -506,7 +474,4 @@ OpenMP_SPECTEST_CXX_:INTERNAL=TRUE
 OpenMP_SPECTEST_C_:INTERNAL=TRUE
 //ADVANCED property for variable: OpenMP_gomp_LIBRARY
 OpenMP_gomp_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
-PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
-__pkg_config_checked_GLFW3:INTERNAL=1
 

@@ -22,7 +22,6 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/opt/local/include"
   "../lib"
   "/usr/local/Cellar/glew/2.1.0_1/include"
   "../lib/utgraphicsutil"

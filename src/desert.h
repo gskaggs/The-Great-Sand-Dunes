@@ -27,7 +27,8 @@ public:
     void getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& faces);
 private:
     std::vector<std::vector<double>> height;
-    std::vector<std::vector<int>> saltation, deposition;
+    std::vector<std::vector<int>> saltation; 
+    std::vector<std::vector<double>> deposition;
 
     glm::dvec3 position(int i, int j);
     glm::dvec3 initV();

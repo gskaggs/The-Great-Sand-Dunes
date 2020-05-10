@@ -37,7 +37,7 @@ void Particle::update() {
 
 Floor::Floor(int w, int h) : height(w, std::vector<double>(h)), 
                              saltation(w, std::vector<int>(h)),
-                             deposition(w, std::vector<int>(h))
+                             deposition(w, std::vector<double>(h))
 {
        srand(time(NULL));
        //for(int i = 0; i < num_particles; i++) {
@@ -70,16 +70,16 @@ bool Floor::intersect(Particle* p) {
         died++;
 
         p->P[1] = grain_size*1500;
-        return false; 
+        return true; 
     }
 
     glm::dvec3 N = glm::dvec3(0);
-    h = (x-r)*(z-c)*height[r][c] + (r+1-x)*(z-c)*height[r+1][c] 
-        + (x-r)*(c+1-z)*height[r][c+1] + (r+1-x)*(c+1-z)*height[r+1][c+1];
+    //h = (x-r)*(z-c)*height[r][c] + (r+1-x)*(z-c)*height[r+1][c] 
+    //    + (x-r)*(c+1-z)*height[r][c+1] + (r+1-x)*(c+1-z)*height[r+1][c+1];
     if(x-r + z-c < r+1-x + c+1-z) {
         //triangle 1
-        //h = height[r][c] + height[r+1][c] + height[r][c+1];
-        //h /= 3;
+        h = height[r][c] + height[r+1][c] + height[r][c+1];
+        h /= 3;
 
         glm::dvec3 v1 = position(r,c+1) - position(r,c);
         glm::dvec3 v2 = position(r+1,c) - position(r,c);
@@ -87,8 +87,8 @@ bool Floor::intersect(Particle* p) {
         if(glm::dot(N, glm::dvec3(0,1,0)) < 0) std::cerr << "oops1" << std::endl;
     } else {
         //triangle 2
-        //h = height[r+1][c] + height[r][c+1] + height[r+1][c+1];
-        //h /= 3;
+        h = height[r+1][c] + height[r][c+1] + height[r+1][c+1];
+        h /= 3;
 
         glm::dvec3 v1 = position(r+1, c+1) - position(r, c+1);
         glm::dvec3 v2 = position(r+1, c) - position(r, c+1);

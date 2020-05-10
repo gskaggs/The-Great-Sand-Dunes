@@ -1,6 +1,6 @@
 # Directories
-LINK_DIRECTORIES("/usr/local/lib" "/opt/local/lib")
-INCLUDE_DIRECTORIES("/usr/local/include" "/opt/local/include")
+#LINK_DIRECTORIES("/usr/local/lib" "/opt/local/lib")
+INCLUDE_DIRECTORIES("/usr/local/include") # "/opt/local/include")
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/lib)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
