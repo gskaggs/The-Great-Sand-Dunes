@@ -6,23 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil/debuggl.cc
+/Users/gskaggs/The-Great-Sand-Dunes/lib/utgraphicsutil/debuggl.cc
 debuggl.h
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil/debuggl.h
+/Users/gskaggs/The-Great-Sand-Dunes/lib/utgraphicsutil/debuggl.h
 GL/glew.h
 -
 GLFW/glfw3.h
 -
 
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil/debuggl.h
+/Users/gskaggs/The-Great-Sand-Dunes/lib/utgraphicsutil/debuggl.h
 
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil/image.h
+/Users/gskaggs/The-Great-Sand-Dunes/lib/utgraphicsutil/image.h
 vector
 -
 
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil/jpegio.cc
+/Users/gskaggs/The-Great-Sand-Dunes/lib/utgraphicsutil/jpegio.cc
 jpegio.h
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil/jpegio.h
+/Users/gskaggs/The-Great-Sand-Dunes/lib/utgraphicsutil/jpegio.h
 vector
 -
 jpeglib.h
@@ -30,29 +30,13 @@ jpeglib.h
 stdio.h
 -
 
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil/jpegio.h
+/Users/gskaggs/The-Great-Sand-Dunes/lib/utgraphicsutil/jpegio.h
 string
 -
 image.h
-/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil/image.h
+/Users/gskaggs/The-Great-Sand-Dunes/lib/utgraphicsutil/image.h
 
-/opt/local/include/jconfig.h
-
-/opt/local/include/jerror.h
-
-/opt/local/include/jmorecfg.h
-
-/opt/local/include/jpeglib.h
-jconfig.h
-/opt/local/include/jconfig.h
-jmorecfg.h
-/opt/local/include/jmorecfg.h
-jpegint.h
-/opt/local/include/jpegint.h
-jerror.h
-/opt/local/include/jerror.h
-
-/usr/local/include/GL/glew.h
+/usr/local/Cellar/glew/2.1.0_1/include/GL/glew.h
 stddef.h
 -
 inttypes.h
@@ -111,4 +95,20 @@ GL/glext.h
 -
 GL/glu.h
 -
+
+/usr/local/include/jconfig.h
+
+/usr/local/include/jerror.h
+
+/usr/local/include/jmorecfg.h
+
+/usr/local/include/jpeglib.h
+jconfig.h
+/usr/local/include/jconfig.h
+jmorecfg.h
+/usr/local/include/jmorecfg.h
+jpegint.h
+/usr/local/include/jpegint.h
+jerror.h
+/usr/local/include/jerror.h
 

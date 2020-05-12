@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil/debuggl.cc" "/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles/utgraphicsutil.dir/lib/utgraphicsutil/debuggl.cc.o"
-  "/Users/rahulkrishnan/Documents/GitHub/gfx-final/lib/utgraphicsutil/jpegio.cc" "/Users/rahulkrishnan/Documents/GitHub/gfx-final/build/CMakeFiles/utgraphicsutil.dir/lib/utgraphicsutil/jpegio.cc.o"
+  "/Users/gskaggs/The-Great-Sand-Dunes/lib/utgraphicsutil/debuggl.cc" "/Users/gskaggs/The-Great-Sand-Dunes/build/CMakeFiles/utgraphicsutil.dir/lib/utgraphicsutil/debuggl.cc.o"
+  "/Users/gskaggs/The-Great-Sand-Dunes/lib/utgraphicsutil/jpegio.cc" "/Users/gskaggs/The-Great-Sand-Dunes/build/CMakeFiles/utgraphicsutil.dir/lib/utgraphicsutil/jpegio.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -18,11 +18,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/usr/local/include"
   "../lib"
   "/usr/local/Cellar/glew/2.1.0_1/include"
   "../lib/utgraphicsutil"
-  "/opt/local/include"
+  "/usr/local/include"
   "../third-party/glm"
   )
 
