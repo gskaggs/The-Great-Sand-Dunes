@@ -279,22 +279,36 @@ void Desert::updateSimulation() {
     floor.updateHeight();
 }
 
-int v_coord(int i, int j) {
-    return i*hmap_height + j;
+int v_coord(int i, int j, int N) {
+    return i*N + j;
 }
 
 void Floor::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& faces) {
+    std::vector<std::vector<glm::dvec4>> temp;
+
     for(int i = 0 ; i < hmap_width; i++) {
+        std::vector<glm::dvec4> cur;
+
         for(int j = 0; j < hmap_height; j++) {
-            verts.push_back(glm::vec4(position(i,j), 1));
-            std::cout << height[i][j] << " ";
-        
-            if(i+1 < hmap_width && j+1 < hmap_height) {
-                faces.push_back(glm::uvec3(v_coord(i,j), v_coord(i, j+1), v_coord(i+1, j)));
-                faces.push_back(glm::uvec3(v_coord(i,j+1), v_coord(i+1, j+1), v_coord(i+1, j)));
-            }
+            cur.push_back(glm::dvec4(position(i,j), 1));
         }
-        std::cout << std::endl;
+
+        temp.push_back(cur);
+    }
+
+    // Catmull Cull Subdivisions
+    F0R(i, subdivs) {
+        temp = cat_cull(temp);
+    }
+
+    int N = temp.size();
+    F0R(i, N) F0R(j, N) {
+        verts.push_back(glm::vec4(temp[i][j]));
+        
+        if(i+1 < N && j+1 < N) {
+            faces.push_back(glm::uvec3(v_coord(i,j, N), v_coord(i, j+1,N), v_coord(i+1, j,N)));
+            faces.push_back(glm::uvec3(v_coord(i,j+1,N), v_coord(i+1, j+1,N), v_coord(i+1, j,N)));
+        }
     }
 }
 
