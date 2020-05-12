@@ -2,6 +2,7 @@
 #define SKINNING_GUI_H
 
 #include <glm/glm.hpp>
+#include "config.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <GLFW/glfw3.h>
 
@@ -52,9 +53,9 @@ private:
 	float zoom_speed_ = 0.1f;
 	float aspect_;
 
-	glm::vec3 eye_ = glm::vec3(0.0f, 10.0f, camera_distance_);
-	glm::vec3 up_ = glm::vec3(0.0f, 1.0f, 0.0f);
-	glm::vec3 look_ = glm::vec3(0.0f, -1.0f, -1.0f);
+	glm::vec3 eye_ = glm::vec3(0.0f, 10.0f, world_height/2.0);
+	glm::vec3 up_ = glm::vec3(1.0f, 1.0f, 0.0f);
+	glm::vec3 look_ = glm::vec3(1.0f, -1.0f, 0.0f);
 	glm::vec3 tangent_ = glm::cross(look_, up_);
 	glm::vec3 center_ = eye_ - camera_distance_ * look_;
 	glm::mat3 orientation_ = glm::mat3(tangent_, up_, look_);
