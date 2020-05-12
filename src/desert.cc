@@ -17,6 +17,59 @@ double sa = PI/8*grain_size*grain_size;
 double cds = 0.48;
 double rho = 1.225;
 
+#define FOR(i,a,b) for (int i = (a); i < (b); ++i)
+#define F0R(i,a) FOR(i,0,a)
+
+std::vector<std::vector<glm::dvec4>> Floor::cat_cull(std::vector<std::vector<glm::dvec4>>& p) {
+    int N = (int) p.size();
+    std::vector<std::vector<glm::dvec4>> res(2*N-1, std::vector<glm::dvec4>(2*N-1));
+
+    // Face Verts
+    F0R(i, N-1) F0R(j, N-1) 
+        res[2*i+1][2*j+1] = (p[i][j] + p[i+1][j] + p[i][j+1] + p[i+1][j+1]) * 0.25;
+
+    // Horizontal Edges
+    F0R(i, N-1) F0R(j, N) {
+        glm::dvec4 cur = p[i][j] + p[i+1][j];
+        double denom = 2;
+
+        if (j > 0  ) { cur += res[2*i+1][2*j-1]; denom++;}
+        if (j < N-1) { cur += res[2*i+1][2*j+1]; denom++;}
+
+        res[2*i+1][2*j] = cur * (1/denom);
+    }
+    
+    // Vertical Edges
+    F0R(i, N) F0R(j, N-1) {
+        glm::dvec4 cur = p[i][j] + p[i][j+1];
+        double denom = 2;
+
+        if (i > 0  ) { cur += res[2*i-1][2*j+1]; denom++;}
+        if (j < N-1) { cur += res[2*i+1][2*j+1]; denom++;}
+
+        res[2*i][2*j+1] = cur * (1/denom);
+    }
+
+    // Original Points
+    F0R(i, N) F0R(j, N) {
+        if(!i || !j || i<N-1 || j<N-1) { res[2*i][2*j] = p[i][j]; continue; }
+
+        glm::dvec4 F = res[2*i-1][2*j-1] + res[2*i-1][2*j+1] + res[2*i+1][2*j-1] + res[2*i+1][2*j+1];
+        F *= 0.25;
+        
+        glm::dvec4 R = (p[i][j] + p[i-1][j])*0.5 + (p[i][j] + p[i][j-1])*0.5 + (p[i][j] + p[i+1][j])*0.5 + (p[i][j] + p[i][j+1])*0.5; 
+        R *= 0.25;
+
+        res[2*i][2*j] = (p[i][j] + F + R*2.0) * 1.25;
+    }
+    
+    F0R(i, 2*N-1) F0R(j, 2*N-1) 
+        res[i][j][3] = 1;
+
+    return res;
+
+}
+
 glm::dvec3 windSpeed(glm::dvec3 P) {
     return windDir * ((u_star / K) * log(P[1]/z_0)/log(e)) * 5.0;   
     //return 0.2 * windDir;

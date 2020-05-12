@@ -25,6 +25,7 @@ public:
     //Simulate particles entering air
     void saltate(std::vector<Particle*>& newParticles);
     void getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& faces);
+    std::vector<std::vector<glm::dvec4>> cat_cull(std::vector<std::vector<glm::dvec4>>& p);
 private:
     std::vector<std::vector<double>> height;
     std::vector<std::vector<int>> saltation; 

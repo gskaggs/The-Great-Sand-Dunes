@@ -12,12 +12,6 @@
 vector
 -
 
-../lib/utgraphicsutil/jpegio.h
-string
--
-image.h
-../lib/utgraphicsutil/image.h
-
 ../lib/utgraphicsutil/material.h
 image.h
 ../lib/utgraphicsutil/image.h
@@ -1248,12 +1242,6 @@ norm.inl
 quaternion.inl
 ../third-party/glm/glm/gtx/quaternion.inl
 
-../third-party/glm/glm/gtx/quaternion.inl
-limits
--
-../gtc/constants.hpp
-../third-party/glm/glm/gtc/constants.hpp
-
 ../third-party/glm/glm/gtx/rotate_vector.hpp
 ../gtx/transform.hpp
 ../third-party/glm/glm/gtx/transform.hpp
@@ -1620,28 +1608,6 @@ glm/gtc/matrix_transform.hpp
 GLFW/glfw3.h
 -
 
-/Users/gskaggs/The-Great-Sand-Dunes/src/gui.cc
-gui.h
-/Users/gskaggs/The-Great-Sand-Dunes/src/gui.h
-config.h
-/Users/gskaggs/The-Great-Sand-Dunes/src/config.h
-jpegio.h
--
-iostream
--
-algorithm
--
-debuggl.h
--
-glm/gtc/matrix_access.hpp
--
-glm/gtc/matrix_transform.hpp
--
-glm/gtx/quaternion.hpp
--
-glm/gtx/transform.hpp
--
-
 /Users/gskaggs/The-Great-Sand-Dunes/src/gui.h
 glm/glm.hpp
 -
@@ -1695,12 +1661,6 @@ shaders/default.frag
 /Users/gskaggs/The-Great-Sand-Dunes/src/shaders/default.frag
 shaders/floor.frag
 /Users/gskaggs/The-Great-Sand-Dunes/src/shaders/floor.frag
-
-/Users/gskaggs/The-Great-Sand-Dunes/src/procedure_geometry.cc
-procedure_geometry.h
-/Users/gskaggs/The-Great-Sand-Dunes/src/procedure_geometry.h
-config.h
-/Users/gskaggs/The-Great-Sand-Dunes/src/config.h
 
 /Users/gskaggs/The-Great-Sand-Dunes/src/procedure_geometry.h
 vector
