@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <GLFW/glfw3.h>
+#include <assert.h>
 
 double e = 2.71828;
 int numParticles = 0;
@@ -22,6 +23,8 @@ double rho = 1.225;
 
 std::vector<std::vector<glm::dvec4>> Floor::cat_cull(std::vector<std::vector<glm::dvec4>>& p) {
     int N = (int) p.size();
+    assert(N && N == (int) p[0].size());
+
     std::vector<std::vector<glm::dvec4>> res(2*N-1, std::vector<glm::dvec4>(2*N-1));
 
     // Face Verts
@@ -38,21 +41,21 @@ std::vector<std::vector<glm::dvec4>> Floor::cat_cull(std::vector<std::vector<glm
 
         res[2*i+1][2*j] = cur * (1/denom);
     }
-    
+
     // Vertical Edges
     F0R(i, N) F0R(j, N-1) {
         glm::dvec4 cur = p[i][j] + p[i][j+1];
         double denom = 2;
 
         if (i > 0  ) { cur += res[2*i-1][2*j+1]; denom++;}
-        if (j < N-1) { cur += res[2*i+1][2*j+1]; denom++;}
+        if (i < N-1) { cur += res[2*i+1][2*j+1]; denom++;}
 
         res[2*i][2*j+1] = cur * (1/denom);
     }
 
     // Original Points
     F0R(i, N) F0R(j, N) {
-        if(!i || !j || i<N-1 || j<N-1) { res[2*i][2*j] = p[i][j]; continue; }
+        if(!i || !j || i>=N-1 || j>=N-1) { res[2*i][2*j] = p[i][j]; continue; }
 
         glm::dvec4 F = res[2*i-1][2*j-1] + res[2*i-1][2*j+1] + res[2*i+1][2*j-1] + res[2*i+1][2*j+1];
         F *= 0.25;
@@ -60,9 +63,9 @@ std::vector<std::vector<glm::dvec4>> Floor::cat_cull(std::vector<std::vector<glm
         glm::dvec4 R = (p[i][j] + p[i-1][j])*0.5 + (p[i][j] + p[i][j-1])*0.5 + (p[i][j] + p[i+1][j])*0.5 + (p[i][j] + p[i][j+1])*0.5; 
         R *= 0.25;
 
-        res[2*i][2*j] = (p[i][j] + F + R*2.0) * 1.25;
+        res[2*i][2*j] = (p[i][j] + F + R*2.0) * 0.25;
     }
-    
+
     F0R(i, 2*N-1) F0R(j, 2*N-1) 
         res[i][j][3] = 1;
 

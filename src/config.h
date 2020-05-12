@@ -42,7 +42,7 @@ const double u_star = 0.2; //friction velocity
 const double B = 1.5; // [0.8, 2] wind constant
 const double Q = 0.5; // saltation probability
 const int max_salt_angle_diff = 69;
-const int subdivs = 0;
+const int subdivs = 3;
 
 const double psi = 45*PI/180;
 const glm::dvec3 windDir = glm::dvec3(cos(psi),0,sin(psi));
