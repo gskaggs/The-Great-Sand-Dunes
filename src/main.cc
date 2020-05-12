@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
     }
     desert.getFloor(floor_vertices, floor_faces);
 	
-    glm::vec4 light_position = glm::vec4(0.0f, 100.0f, 0.0f, 1.0f);
+    glm::vec4 light_position = glm::vec4(-20.0f, 100.0f, -20.0f, 1.0f);
 	MatrixPointers mats; // Define MatrixPointers here for lambda to capture
 
 	/*

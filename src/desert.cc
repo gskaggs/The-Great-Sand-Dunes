@@ -25,13 +25,13 @@ glm::dvec3 windSpeed(glm::dvec3 P) {
 void Particle::update() {
     P += V*delta_t;
     glm::dvec3 U = windSpeed(P);
-    //std::cout << "U: " << U[0] << " " << U[1] << " " << U[2] << std::endl;
-    //std::cout << "V: " << V[0] << " " << V[1] << " " << V[2] << std::endl;
+    if(one_part) std::cout << "U: " << U[0] << " " << U[1] << " " << U[2] << std::endl;
+    if(one_part) std::cout << "V: " << V[0] << " " << V[1] << " " << V[2] << std::endl;
     glm::dvec3 delta_V = U - V;
     glm::dvec3 F_wind = rho * sa * cds * glm::length(delta_V) * delta_V; 
-    //std::cout << "a_wind: " << F_wind[0]/mass << " " << F_wind[1]/mass << " " << F_wind[2]/mass << std::endl;
+    if(one_part) std::cout << "a_wind: " << F_wind[0]/mass << " " << F_wind[1]/mass << " " << F_wind[2]/mass << std::endl;
     glm::dvec3 F_g = glm::dvec3(0, -1, 0) * gravity;
-    //std::cout << "a_g: " << F_g[0]/mass << " " << F_g[1]/mass << " " << F_g[2]/mass << std::endl;
+    if(one_part) std::cout << "a_g: " << F_g[0]/mass << " " << F_g[1]/mass << " " << F_g[2]/mass << std::endl;
     V += (F_wind + F_g)*(delta_t/mass);
 }
 
@@ -74,12 +74,15 @@ bool Floor::intersect(Particle* p) {
     }
 
     glm::dvec3 N = glm::dvec3(0);
+    h = height[r][c] + height[r][c+1] + height[r+1][c] + height[r+1][c+1];
+    h /= 4;
+
     //h = (x-r)*(z-c)*height[r][c] + (r+1-x)*(z-c)*height[r+1][c] 
     //    + (x-r)*(c+1-z)*height[r][c+1] + (r+1-x)*(c+1-z)*height[r+1][c+1];
     if(x-r + z-c < r+1-x + c+1-z) {
         //triangle 1
-        h = height[r][c] + height[r+1][c] + height[r][c+1];
-        h /= 3;
+        //h = height[r][c] + height[r+1][c] + height[r][c+1];
+        //h /= 3;
 
         glm::dvec3 v1 = position(r,c+1) - position(r,c);
         glm::dvec3 v2 = position(r+1,c) - position(r,c);
@@ -87,8 +90,8 @@ bool Floor::intersect(Particle* p) {
         if(glm::dot(N, glm::dvec3(0,1,0)) < 0) std::cerr << "oops1" << std::endl;
     } else {
         //triangle 2
-        h = height[r+1][c] + height[r][c+1] + height[r+1][c+1];
-        h /= 3;
+        //h = height[r+1][c] + height[r][c+1] + height[r+1][c+1];
+        //h /= 3;
 
         glm::dvec3 v1 = position(r+1, c+1) - position(r, c+1);
         glm::dvec3 v2 = position(r+1, c) - position(r, c+1);
@@ -138,7 +141,7 @@ void Floor::saltate(std::vector<Particle*>& newParticles) {
     for(int i = 0; i < hmap_width; i++) {
         for(int j = 0; j < hmap_height; j++) {
              int rando = rand() % 100 + 1;
-             //if(numParticles >= 1) return;
+             if(one_part && numParticles >= 1) return;
              if(rando < Q*100 && height[i][j] > 1e-5) {
                 // create particle
                 Particle* p = new Particle;
@@ -146,7 +149,7 @@ void Floor::saltate(std::vector<Particle*>& newParticles) {
                 p->V = initV();
                 newParticles.push_back(p);
                 saltation[i][j] = 1;
-                //return;
+                if (one_part) return;
              } else {
                 saltation[i][j] = 0;
             }
@@ -161,7 +164,7 @@ glm::dvec3 Floor::position(int i, int j) {
 glm::dvec3 Floor::initV() {
     double v_x, v_y, v_z;
     v_y = B * u_star;
-    double phi = ((rand() % 69) + 21)*(2*PI/360);
+    double phi = ((rand() % max_salt_angle_diff) + 21)*(2*PI/360);
     if(sin(phi) < 0.3 || phi > PI/2) std::cerr << "oops" << std::endl;
     if(phi < 1e-5) phi = 0.1;
     double V_ = v_y / sin(phi);
