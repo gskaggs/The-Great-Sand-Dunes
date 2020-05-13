@@ -1,0 +1,6 @@
+/Users/gskaggs/The-Great-Sand-Dunes/build/CMakeFiles/rebuild_cache.dir
+/Users/gskaggs/The-Great-Sand-Dunes/build/CMakeFiles/edit_cache.dir
+/Users/gskaggs/The-Great-Sand-Dunes/build/CMakeFiles/utgraphicsutil.dir
+/Users/gskaggs/The-Great-Sand-Dunes/build/src/CMakeFiles/rebuild_cache.dir
+/Users/gskaggs/The-Great-Sand-Dunes/build/src/CMakeFiles/edit_cache.dir
+/Users/gskaggs/The-Great-Sand-Dunes/build/src/CMakeFiles/skinning.dir

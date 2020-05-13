@@ -18,6 +18,7 @@ double sa = PI/8*grain_size*grain_size;
 double cds = 0.48;
 double rho = 1.225;
 
+// Macros from competitive programming :)
 #define FOR(i,a,b) for (int i = (a); i < (b); ++i)
 #define F0R(i,a) FOR(i,0,a)
 
@@ -72,6 +73,8 @@ std::vector<std::vector<glm::dvec4>> Floor::cat_cull(std::vector<std::vector<glm
     return res;
 
 }
+
+
 
 glm::dvec3 windSpeed(glm::dvec3 P) {
     return windDir * ((u_star / K) * log(P[1]/z_0)/log(e)) * 5.0;   
@@ -286,8 +289,82 @@ int v_coord(int i, int j, int N) {
     return i*N + j;
 }
 
+std::vector<std::vector<double>> smooth(std::vector<std::vector<double>>& p) {
+    int N = p.size();
+    std::vector<std::vector<double>> res(2*N, std::vector<double>(2*N));
+    
+    // Bottom Left
+    F0R(i, N) F0R(j, N) {
+        double cur = 0, denom = 0;
+
+        cur += 9*p[i][j];
+        denom += 9;
+
+        if(i) { cur += 3*p[i-1][j]; denom += 3; }
+        if(j) { cur += 3*p[i][j-1]; denom += 3; }
+
+        if(i && j) { cur += p[i-1][j-1]; denom += 1; }
+
+        res[2*i][2*j] = cur / denom;
+
+    }
+
+    // Bottom Right
+    F0R(i, N) F0R(j, N) {
+        double cur = 0, denom = 0;
+
+        cur += 9*p[i][j];
+        denom += 9;
+
+        if(i < N-1) { cur += 3*p[i+1][j]; denom += 3; }
+        if(j) { cur += 3*p[i][j-1]; denom += 3; }
+
+        if(i < N-1 && j) { cur += p[i+1][j-1]; denom += 1; }
+
+        res[2*i+1][2*j] = cur / denom;
+
+    }
+
+    // Top Left 
+    F0R(i, N) F0R(j, N) {
+        double cur = 0, denom = 0;
+
+        cur += 9*p[i][j];
+        denom += 9;
+
+        if(j < N-1) { cur += 3*p[i][j+1]; denom += 3; }
+        if(i) { cur += 3*p[i-1][j]; denom += 3; }
+
+        if(j < N-1 && i) { cur += p[i-1][j+1]; denom += 1; }
+
+        res[2*i][2*j+1] = cur / denom;
+
+    }   
+
+    // Top Right
+    F0R(i, N) F0R(j, N) {
+        double cur = 0, denom = 0;
+
+        cur += 9*p[i][j];
+        denom += 9;
+
+        if(i < N-1) { cur += 3*p[i+1][j]; denom += 3; }
+        if(j < N-1) { cur += 3*p[i][j+1]; denom += 3; }
+
+        if(i < N-1 && j < N-1) { cur += p[i+1][j+1]; denom += 1; }
+
+        res[2*i+1][2*j+1] = cur / denom;
+
+    }
+
+    return res;
+
+}
+
 void makeDoons(std::vector<std::vector<glm::dvec4>>& p) {
     int D = D1;
+    int D2 = D;
+
     std::vector<std::vector<std::vector<double>>> h;
     h.resize(num_levels);
     for(int i = 0; i < num_levels; i++) {
@@ -295,11 +372,17 @@ void makeDoons(std::vector<std::vector<glm::dvec4>>& p) {
         for(int d = 0; d < D; d++) {
             h[i][d].resize(D);
             for(int j = 0; j < D; j++) {
-                h[i][d][j] = (rand() % 20000)/10000.0; 
+                h[i][d][j] = (rand() % 40000)/10000.0; 
             }
         }
 
+        D2 = D;
         D <<= 1;
+    }
+
+    F0R(i, num_levels) {
+        while ((int) h[i].size() < D2) 
+            h[i] = smooth(h[i]);
     }
 
     int n = p.size();
@@ -310,7 +393,7 @@ void makeDoons(std::vector<std::vector<glm::dvec4>>& p) {
             double y = j/(double)n;
             D = D1;
             for(int k = 0; k < num_levels; k++) {
-                curr += h[k][(int)(x*D)][(int)(y*D)] * D1/(double)D;
+                curr += h[k][(int)(x*D2)][(int)(y*D2)] * D1/(double)D;
                 D <<= 1;
             }
 
