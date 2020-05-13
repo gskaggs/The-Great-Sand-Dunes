@@ -1586,6 +1586,28 @@ glm/glm.hpp
 cmath
 -
 
+/Users/gskaggs/The-Great-Sand-Dunes/src/desert.cc
+iostream
+-
+vector
+-
+desert.h
+/Users/gskaggs/The-Great-Sand-Dunes/src/desert.h
+cmath
+-
+stdlib.h
+-
+time.h
+-
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
+-
+GLFW/glfw3.h
+-
+assert.h
+-
+
 /Users/gskaggs/The-Great-Sand-Dunes/src/desert.h
 iostream
 -
@@ -1675,6 +1697,12 @@ shaders/default.frag
 /Users/gskaggs/The-Great-Sand-Dunes/src/shaders/default.frag
 shaders/floor.frag
 /Users/gskaggs/The-Great-Sand-Dunes/src/shaders/floor.frag
+
+/Users/gskaggs/The-Great-Sand-Dunes/src/procedure_geometry.cc
+procedure_geometry.h
+/Users/gskaggs/The-Great-Sand-Dunes/src/procedure_geometry.h
+config.h
+/Users/gskaggs/The-Great-Sand-Dunes/src/config.h
 
 /Users/gskaggs/The-Great-Sand-Dunes/src/procedure_geometry.h
 vector
