@@ -33,7 +33,7 @@ const float hmap_resolution = 1;
 const int hmap_width = world_width * hmap_resolution, 
           hmap_height = world_height * hmap_resolution;
 const double delta_t = 0.01;
-const double end_time = 10;
+const double end_time = 0;
 
 //const int num_particles = 50000*hmap_resolution;
 const bool one_part = false;
@@ -54,4 +54,9 @@ const double gravity = mass * .98;
 const double fatten = 0.02;
 const double ffrac = 0.03;
 const double jepsilon = 0.1;
+
+
+// Procedural Geometry
+const int D1 = 2;
+const int num_levels = 6;
 #endif
