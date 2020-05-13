@@ -1,4 +1,4 @@
-# Install script for directory: /Users/gskaggs/The-Great-Sand-Dunes/src
+# Install script for directory: /Users/rahulkrishnan/Documents/GitHub/gfx-final/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

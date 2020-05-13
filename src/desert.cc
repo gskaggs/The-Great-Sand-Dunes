@@ -286,6 +286,39 @@ int v_coord(int i, int j, int N) {
     return i*N + j;
 }
 
+void makeDoons(std::vector<std::vector<glm::dvec4>>& p) {
+    int D = D1;
+    std::vector<std::vector<std::vector<double>>> h;
+    h.resize(num_levels);
+    for(int i = 0; i < num_levels; i++) {
+        h[i].resize(D);
+        for(int d = 0; d < D; d++) {
+            h[i][d].resize(D);
+            for(int j = 0; j < D; j++) {
+                h[i][d][j] = (rand() % 20000)/10000.0; 
+            }
+        }
+
+        D <<= 1;
+    }
+
+    int n = p.size();
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            double curr = 0;
+            double x = i/(double)n;
+            double y = j/(double)n;
+            D = D1;
+            for(int k = 0; k < num_levels; k++) {
+                curr += h[k][(int)(x*D)][(int)(y*D)] * D1/(double)D;
+                D <<= 1;
+            }
+
+            p[i][j] += glm::dvec4(0, curr, 0, 0);
+        }
+    }
+}
+
 void Floor::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& faces) {
     std::vector<std::vector<glm::dvec4>> temp;
 
@@ -303,6 +336,8 @@ void Floor::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& fac
     F0R(i, subdivs) {
         temp = cat_cull(temp);
     }
+
+    makeDoons(temp);
 
     int N = temp.size();
     F0R(i, N) F0R(j, N) {
