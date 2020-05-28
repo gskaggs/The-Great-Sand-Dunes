@@ -28,12 +28,12 @@ const float kFloorY = -0.75617 - kFloorEps;
 const float kScrollSpeed = 64.0f;
 
 // Desert info
-const int world_width = 96, world_height = 96;
+const int world_width = 32, world_height = 32;
 const float hmap_resolution = 1;  
 const int hmap_width = world_width * hmap_resolution, 
           hmap_height = world_height * hmap_resolution;
 const double delta_t = 0.01;
-const double end_time = 10;
+const double end_time = 0;
 
 //const int num_particles = 50000*hmap_resolution;
 const bool one_part = false;

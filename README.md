@@ -5,11 +5,11 @@ Physical simulation of sand particles to render photo realistic images of desert
 
 ## Configuration
 To modulate the simulation's configuration open *src/config.h*. We especially recommend modifying the values for:
-1. hmap_resolution
-1. fatten
-1. ffrac
-1. num_levels 
-1. subdivs
+* hmap_resolution
+* fatten
+* ffrac
+* num_levels 
+* subdivs
 
 where **hmap_resolution** determines the density of height map points in the simulation, **ffatten** is the friction bouncing particles experience in the normal direction, **frac** is the friction bouncing particles experience in the tangential direction, **num_levels** is the number of levels used in the procedural generation of random terrain, **subdivs** is the number of subdivision layers used in the Catmull-Clark algorithm.
 
@@ -22,13 +22,13 @@ The script *build.sh* builds the project using the cmake settings we've configur
 ![GitHub Logo](/images/ripples.png)
 
 #### Procedural Noise With Sand Simulation:
-![GitHub Logo](/images/edgy.png)
+![GitHub Logo](/images/procedural.png)
 
 #### Without Catmull-Clark Subdivisions:
-![GitHub Logo](/imadges/edgy.png)
+![GitHub Logo](/images/edgy.png)
 
 #### Procedural Noise Without Sand Simulation:
-![GitHub Logo](/images/procedural.png)
+![GitHub Logo](/images/bumpy.png)
 
 ## Referenced Works:
 *Real-Time Simulation of Aeolian Sand Movement and Sand Ripple Evolution* by Ning Wang and Bao-Gang Hu.

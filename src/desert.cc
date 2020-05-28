@@ -372,7 +372,7 @@ void makeDoons(std::vector<std::vector<glm::dvec4>>& p) {
         for(int d = 0; d < D; d++) {
             h[i][d].resize(D);
             for(int j = 0; j < D; j++) {
-                h[i][d][j] = (rand() % 200000)/10000.0; 
+                h[i][d][j] = (rand() % 40000)/10000.0; 
             }
         }
 
