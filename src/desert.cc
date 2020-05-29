@@ -9,6 +9,7 @@
 #include <GLFW/glfw3.h>
 #include <assert.h>
 
+// constants used in debugging
 double e = 2.71828;
 int numParticles = 0;
 int interParticles = 0;
@@ -22,7 +23,7 @@ double rho = 1.225;
 #define FOR(i,a,b) for (int i = (a); i < (b); ++i)
 #define F0R(i,a) FOR(i,0,a)
 
-// My implementation of the catmull clark algorithm
+// My implementation of the Catmull-Clark algorithm
 std::vector<std::vector<glm::dvec4>> Floor::cat_cull(std::vector<std::vector<glm::dvec4>>& p) {
     int N = (int) p.size();
     assert(N && N == (int) p[0].size());
@@ -75,10 +76,12 @@ std::vector<std::vector<glm::dvec4>> Floor::cat_cull(std::vector<std::vector<glm
 
 }
 
+// P is position in world coordinates
 glm::dvec3 windSpeed(glm::dvec3 P) {
     return windDir * ((u_star / K) * log(P[1]/z_0)/log(e)) * 5.0;   
 }
 
+// one_part is true if there is exactly one particle in the world (used for testing physics)
 void Particle::update() {
     P += V*delta_t;
     glm::dvec3 U = windSpeed(P);
@@ -111,6 +114,7 @@ Floor::Floor(int w, int h) : height(w, std::vector<double>(h)),
        updateHeight();
 }
 
+// Returns true if p intersects the floor
 bool Floor::intersect(Particle* p) {
     double x = p->P[0]*hmap_resolution;
     double y = p->P[1];
@@ -118,6 +122,8 @@ bool Floor::intersect(Particle* p) {
     double h = 0; 
 
     int r = (int)floor(x), c = (int)floor(z);
+
+    // Check for wrap-around of particle across world boundaries
     if(r < 0 || c < 0 || r >= hmap_width - 1 || c >= hmap_height - 1) {
         if(r < 0) p->P[0] = world_width-1;
         if(c < 0) p->P[2] = world_height-1; 
@@ -134,18 +140,22 @@ bool Floor::intersect(Particle* p) {
     h = height[r][c] + height[r][c+1] + height[r+1][c] + height[r+1][c+1];
     h /= 4;
 
+    // Get normal of closest triangle to particle
     if(x-r + z-c < r+1-x + c+1-z) {
+        // traingle 1
         glm::dvec3 v1 = position(r,c+1) - position(r,c);
         glm::dvec3 v2 = position(r+1,c) - position(r,c);
         N = glm::normalize(cross(v1, v2));
         if(glm::dot(N, glm::dvec3(0,1,0)) < 0) std::cerr << "oops1" << std::endl;
     } else {
+        // triangle 2
         glm::dvec3 v1 = position(r+1, c+1) - position(r, c+1);
         glm::dvec3 v2 = position(r+1, c) - position(r, c+1);
         N = glm::normalize(cross(v1, v2));
         if(glm::dot(N, glm::dvec3(0,1,0)) < 0) std::cerr << "oops2" << std::endl;
     }
 
+    // intersection?
     if(h >= y) {
         p->P[1] = h;
         glm::dvec3 V_n = glm::dot(p->V, N) * N;
@@ -179,6 +189,8 @@ void Floor::updateHeight() {
     }
 }
 
+// simulate birth of new particles from the floor
+// (saltate is latin for "jump")
 void Floor::saltate(std::vector<Particle*>& newParticles) {
     newParticles.clear();
     for(int i = 0; i < hmap_width; i++) {
@@ -204,11 +216,11 @@ glm::dvec3 Floor::position(int i, int j) {
     return glm::dvec3(i/hmap_resolution, height[i][j], j/hmap_resolution);
 }
 
+// initial velocity of a newly made particle
 glm::dvec3 Floor::initV() {
     double v_x, v_y, v_z;
     v_y = B * u_star;
     double phi = ((rand() % max_salt_angle_diff) + 21)*(2*PI/360);
-    if(sin(phi) < 0.3 || phi > PI/2) std::cerr << "oops" << std::endl;
     if(phi < 1e-5) phi = 0.1;
     double V_ = v_y / sin(phi);
     v_x = V_ * cos(phi) * cos(psi);
@@ -223,13 +235,16 @@ Desert::Desert(int width, int height) : floor(width, height) {
 
 void Desert::updateSimulation() {
     Particle* curr = head->next;
+
+    // update particles
     while(curr) {
         curr->update();
         curr = curr->next;
     }
 
     curr = head->next;
-    
+   
+    // check intersections
     while(curr) {
         if(floor.intersect(curr)) {
              // delete particle
@@ -245,7 +260,8 @@ void Desert::updateSimulation() {
         }
         curr = curr->next;
     }
-    
+   
+    // get new particles
     std::vector<Particle*> newParticles;
     floor.saltate(newParticles);
     for(Particle* part : newParticles) {
@@ -261,6 +277,7 @@ void Desert::updateSimulation() {
         }
     }
 
+    // update floor
     floor.updateHeight();
 }
 
@@ -268,6 +285,7 @@ int v_coord(int i, int j, int N) {
     return i*N + j;
 }
 
+// upsampling method of the procedural noise generator
 std::vector<std::vector<double>> smooth(std::vector<std::vector<double>>& p) {
     int N = p.size();
     std::vector<std::vector<double>> res(2*N, std::vector<double>(2*N));
@@ -396,19 +414,17 @@ void Floor::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& fac
         temp.push_back(cur);
     }
 
-    // Catmull Cull Subdivisions
+    // Catmull-Cull Subdivisions
     F0R(i, subdivs) {
         temp = cat_cull(temp);
     }
 
+    // Procedural Noise
     makeDoons(temp);
-
-    F0R(i, 1) {
-        temp = cat_cull(temp);
-    }
 
     temp = cat_cull(temp);
 
+    // Get faces
     int N = temp.size();
     F0R(i, N) F0R(j, N) {
         verts.push_back(glm::vec4(temp[i][j]));
@@ -420,6 +436,7 @@ void Floor::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& fac
     }
 }
 
+// Called right before rendering floor
 void Desert::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& faces) {
     verts.clear();
     faces.clear();

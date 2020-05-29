@@ -8,7 +8,7 @@
 
 struct Particle {
     glm::dvec3 P, V; //position, velocity
-    Particle *next = nullptr, *prev = nullptr;
+    Particle *next = nullptr, *prev = nullptr; // linked list pointers
     
     void update();
 };
@@ -17,19 +17,15 @@ class Floor {
 public:
     Floor(int w, int h);
     
-    //True = desert should delete p, 
-    //False = floor should update p for collision/bounce
     bool intersect(Particle* p);
-    //Called by desert after all particles updated
     void updateHeight(); 
-    //Simulate particles entering air
     void saltate(std::vector<Particle*>& newParticles);
     void getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& faces);
     std::vector<std::vector<glm::dvec4>> cat_cull(std::vector<std::vector<glm::dvec4>>& p);
 private:
-    std::vector<std::vector<double>> height;
-    std::vector<std::vector<int>> saltation; 
-    std::vector<std::vector<double>> deposition;
+    std::vector<std::vector<double>> height; // height map
+    std::vector<std::vector<int>> saltation; // particles born at each height map point 
+    std::vector<std::vector<double>> deposition; // particles deposited at each height map point 
 
     glm::dvec3 position(int i, int j);
     glm::dvec3 initV();
@@ -44,5 +40,5 @@ public:
 
 private:
     Floor floor;
-    Particle* head;
+    Particle* head; // linked list head
 };
