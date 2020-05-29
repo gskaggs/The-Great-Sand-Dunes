@@ -33,11 +33,11 @@ The physical simulation above resulted in a mesh which was too jaggy. To fix thi
 For a complete description of how the algorithm works, see the [Wikipedia article](https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface) mentioned above.
 
 ### *Procedurally Generated Noise*
-To add organic bumps to and dune-like geometries to our desert we implemented a form of noise generation where by course noise is combined with upsampling increasingly finer grained noise. Graphically, the basics of this algorithm can be depicted simply:
+To add organic bumps to and dune-like geometries to our desert we implemented a form of noise generation whereby course noise is combined with upsampling increasingly finer grained noise. Graphically, the basics of this algorithm can be depicted simply:
 ![GitHub Logo](/images/noise.png)
 
 ### *Rendering*
-We converted the polygonal mesh of the floor which results from the above algorithms into a triangular mesh and render on the GPU using OpenGL.
+We converted the polygonal mesh of the floor which results from the above algorithms into a triangular mesh which we rendered on the GPU using OpenGL.
 
 ## Configuration
 To modulate the simulation's configuration edit *src/config.h*. We especially recommend modifying the values for:
@@ -47,7 +47,7 @@ To modulate the simulation's configuration edit *src/config.h*. We especially re
 * num_levels 
 * subdivs
 
-where **hmap_resolution** determines the density of height map points in the simulation, **fatten** is the friction bouncing particles experience in the normal direction, **frac** is the friction bouncing particles experience in the tangential direction, **num_levels** is the number of levels used in the procedural generation of random terrain, **subdivs** is the number of subdivision layers used in the Catmull-Clark algorithm.
+where **hmap_resolution** determines the density of height map points in the simulation, **fatten** is the friction bouncing particles experience in the normal direction, **frac** is the friction bouncing particles experience in the tangential direction, **num_levels** is the number of levels used in the procedural noise generation, **subdivs** is the number of subdivision layers used in the Catmull-Clark algorithm.
 
 ## Execution
 The script *build.sh* builds the project using the cmake settings we've configured for MacOS. Once successfully built, the project can be run with the script *run.sh*.
