@@ -18,10 +18,11 @@ double sa = PI/8*grain_size*grain_size;
 double cds = 0.48;
 double rho = 1.225;
 
-// Macros from competitive programming :)
+// Macros from competitive programming :-)
 #define FOR(i,a,b) for (int i = (a); i < (b); ++i)
 #define F0R(i,a) FOR(i,0,a)
 
+// My implementation of the catmull clark algorithm
 std::vector<std::vector<glm::dvec4>> Floor::cat_cull(std::vector<std::vector<glm::dvec4>>& p) {
     int N = (int) p.size();
     assert(N && N == (int) p[0].size());
@@ -74,23 +75,26 @@ std::vector<std::vector<glm::dvec4>> Floor::cat_cull(std::vector<std::vector<glm
 
 }
 
-
-
 glm::dvec3 windSpeed(glm::dvec3 P) {
     return windDir * ((u_star / K) * log(P[1]/z_0)/log(e)) * 5.0;   
-    //return 0.2 * windDir;
 }
 
 void Particle::update() {
     P += V*delta_t;
     glm::dvec3 U = windSpeed(P);
+
     if(one_part) std::cout << "U: " << U[0] << " " << U[1] << " " << U[2] << std::endl;
     if(one_part) std::cout << "V: " << V[0] << " " << V[1] << " " << V[2] << std::endl;
+
     glm::dvec3 delta_V = U - V;
     glm::dvec3 F_wind = rho * sa * cds * glm::length(delta_V) * delta_V; 
+
     if(one_part) std::cout << "a_wind: " << F_wind[0]/mass << " " << F_wind[1]/mass << " " << F_wind[2]/mass << std::endl;
+
     glm::dvec3 F_g = glm::dvec3(0, -1, 0) * gravity;
+
     if(one_part) std::cout << "a_g: " << F_g[0]/mass << " " << F_g[1]/mass << " " << F_g[2]/mass << std::endl;
+
     V += (F_wind + F_g)*(delta_t/mass);
 }
 
@@ -99,14 +103,8 @@ Floor::Floor(int w, int h) : height(w, std::vector<double>(h)),
                              deposition(w, std::vector<double>(h))
 {
        srand(time(NULL));
-       //for(int i = 0; i < num_particles; i++) {
-       //     int randx = rand() % hmap_width;
-       //     int randy = rand() % hmap_height;
-       //     deposition[randx][randy]++;
-       //}
        for(int i = 0; i < w; i++) {
             for(int j = 0; j < h; j++) {
-                //height[i][j] = grain_size*(rand()%800 + 200);
                 height[i][j] = grain_size*500;
             }
        }
@@ -136,22 +134,12 @@ bool Floor::intersect(Particle* p) {
     h = height[r][c] + height[r][c+1] + height[r+1][c] + height[r+1][c+1];
     h /= 4;
 
-    //h = (x-r)*(z-c)*height[r][c] + (r+1-x)*(z-c)*height[r+1][c] 
-    //    + (x-r)*(c+1-z)*height[r][c+1] + (r+1-x)*(c+1-z)*height[r+1][c+1];
     if(x-r + z-c < r+1-x + c+1-z) {
-        //triangle 1
-        //h = height[r][c] + height[r+1][c] + height[r][c+1];
-        //h /= 3;
-
         glm::dvec3 v1 = position(r,c+1) - position(r,c);
         glm::dvec3 v2 = position(r+1,c) - position(r,c);
         N = glm::normalize(cross(v1, v2));
         if(glm::dot(N, glm::dvec3(0,1,0)) < 0) std::cerr << "oops1" << std::endl;
     } else {
-        //triangle 2
-        //h = height[r+1][c] + height[r][c+1] + height[r+1][c+1];
-        //h /= 3;
-
         glm::dvec3 v1 = position(r+1, c+1) - position(r, c+1);
         glm::dvec3 v2 = position(r+1, c) - position(r, c+1);
         N = glm::normalize(cross(v1, v2));
@@ -166,19 +154,15 @@ bool Floor::intersect(Particle* p) {
         
         bounce++;
         if(glm::length(p->V) > jepsilon) {
-            //std::cout << "BOUNCEDDD--------------------------------------------------------" << std::endl;
             return false;
         }
         bounce--;
 
-        //if(x-r > 0.5) r++;
-        //if(z-c > 0.5) c++;
         deposition[r][c]+= (x-r)*(z-c);
         deposition[r+1][c]+= (r+1-x)*(z-c);
         deposition[r][c+1]+= (x-r)*(c+1-z);
         deposition[r+1][c+1]+= (r+1-x)*(c+1-z);
         interParticles++;
-        //std::cout << "INTERSECTED--------------------------------------------------------" << std::endl;
         return true;
     } else {
         return false;
@@ -245,14 +229,9 @@ void Desert::updateSimulation() {
     }
 
     curr = head->next;
-    /*if(curr) {
-        std::cout << "position: (" << curr->P[0] << ", " << curr->P[1] << ", " << curr->P[2] << "); ";
-        std::cout << "velocity: <" << curr->V[0] << ", " << curr->V[1] << ", " << curr->V[2] << ">";
-        std::cout << "nuMPARITLCULAR "<< numParticles << std::endl;
-    }*/
+    
     while(curr) {
         if(floor.intersect(curr)) {
-             //interParticles++;
              // delete particle
              Particle* prev = curr->prev;
              prev->next = curr->next;
@@ -361,6 +340,7 @@ std::vector<std::vector<double>> smooth(std::vector<std::vector<double>>& p) {
 
 }
 
+// Procedural Noise Generation
 void makeDoons(std::vector<std::vector<glm::dvec4>>& p) {
     int D = D1;
     int D2 = D;
@@ -402,6 +382,7 @@ void makeDoons(std::vector<std::vector<glm::dvec4>>& p) {
     }
 }
 
+// Apply Catmull Clark and Procedural Noise Generation
 void Floor::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& faces) {
     std::vector<std::vector<glm::dvec4>> temp;
 
@@ -443,8 +424,10 @@ void Desert::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& fa
     verts.clear();
     faces.clear();
     floor.getFloor(verts, faces);
-    std::cout << "PARTICAULS: " << numParticles << std::endl;
-    std::cout << "INTERPARTI: " << interParticles << std::endl;
-    std::cout << "BOONCY: " << bounce << std::endl;
-    std::cout << "DOOOD: " << died << std::endl;
+
+    // Analytic Data for Debugging
+    std::cout << "LIVING PARTICAULS: " << numParticles << std::endl;
+    std::cout << "INTERSECTED WITH FLOOR: " << interParticles << std::endl;
+    std::cout << "BOONCED: " << bounce << std::endl;
+    std::cout << "OVERFLOW: " << died << std::endl;
 }

@@ -9,11 +9,6 @@
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtx/transform.hpp>
 
-namespace {
-	// FIXME: Implement a function that performs proper
-	//        ray-cylinder intersection detection
-	// TIPS: The implement is provided by the ray-tracer starter code.
-}
 
 GUI::GUI(GLFWwindow* window, int view_width, int view_height, int preview_height)
 	:window_(window), preview_height_(preview_height)
@@ -49,9 +44,6 @@ void GUI::keyCallback(int key, int scancode, int action, int mods)
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window_, GL_TRUE);
 		return ;
-	}
-	if (key == GLFW_KEY_J && action == GLFW_RELEASE) {
-		//FIXME save out a screenshot using SaveJPEG
 	}
 
 	if (mods == 0 && captureWASDUPDOWN(key, action))
