@@ -1,7 +1,7 @@
 # The Great Sand Dunes
 Physical simulation of sand particles to render photo realistic images of desert dunes and ripples. This was a course research project for CS 378H Computer Graphics Honors at UT Austin, which I completed in collaboration with my partner Rahul Krishnan.
 
-# How It Works
+## How It Works
 To create ambitious desert geometries, we simulated the physics of wind-blown sand particles. Additionally, to improve the realism of the images produced, we also implemented Catmull-Clark subdivision and procedurally generated noise.
 
 ### Physical Simulation
@@ -34,10 +34,10 @@ For a complete description of how the algorithm works, see the [Wikipedia articl
 To add organic bumps to and dune-like geometries to our desert we implemented a form of noise generation where by course noise is combined with upsampling increasingly finer grained noise. Graphically, the basics of this algorithm can be depicted simply:
 ![GitHub Logo](/images/noise.png)
 
-### Rendering
+### 4. Rendering
 We converted the polygonal mesh of the floor which results from the above algorithms into a triangular mesh and render on the GPU using OpenGL.
 
-# Configuration
+## Configuration
 To modulate the simulation's configuration edit *src/config.h*. We especially recommend modifying the values for:
 * hmap_resolution
 * fatten
@@ -47,11 +47,11 @@ To modulate the simulation's configuration edit *src/config.h*. We especially re
 
 where **hmap_resolution** determines the density of height map points in the simulation, **fatten** is the friction bouncing particles experience in the normal direction, **frac** is the friction bouncing particles experience in the tangential direction, **num_levels** is the number of levels used in the procedural generation of random terrain, **subdivs** is the number of subdivision layers used in the Catmull-Clark algorithm.
 
-# Execution
+## Execution
 The script *build.sh* builds the project using the cmake settings we've configured for MacOS. Once successfully built, the project can be run with the script *run.sh*.
 (You may need to modify our Makefiles if you're not using MacOS.)
 
-# Example Images
+## Example Images
 #### Sand Ripples:
 ![GitHub Logo](/images/ripples.png)
 
@@ -64,7 +64,7 @@ The script *build.sh* builds the project using the cmake settings we've configur
 #### Procedural Noise Without Sand Simulation:
 ![GitHub Logo](/images/bumpy.png)
 
-# Referenced Works:
+## Referenced Works
 The physical simulation math and physics came from:
 *Real-Time Simulation of Aeolian Sand Movement and Sand Ripple Evolution* by Ning Wang and Bao-Gang Hu.
 
