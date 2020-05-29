@@ -4,12 +4,12 @@ Physical simulation of sand particles to render photo realistic images of desert
 ## How It Works
 To create ambitious desert geometries, we simulated the physics of wind-blown sand particles. Additionally, to improve the realism of the images produced, we also implemented Catmull-Clark subdivision and procedurally generated noise.
 
-### Physical Simulation
+### *Physical Simulation*
 **Height Map:**
 We represent the desert floor as 2D grid of height values which we call the *height map*.
 At each time step of the simulation, the value at row i and column j of the map is updated with the following equation:
 ![GitHub Logo](/images/hmap.png)
-where nd is number of particles deposited at that point, nb is number of particles leaving that point, and delta is diameter of any given particle. 
+where nd is the number of particles deposited at that point, nb is number of particles leaving that point, and delta is diameter of any given particle. 
 nd is determined by particle collisions with the floor, while nb is either 1 or 0 and determined with a pseudo random number generator.
 
 **Particles:**
@@ -24,17 +24,17 @@ When a particle collides with the floor, it's velocity is attenuated and then re
 Then it can either stay alive and bounce if the magnitude of its resulting velocity is greater than some epsilon or it can be deposited at that point in the floor otherwise.
 For more details regarding any aspect of the physical simulation we did please see Wang and Hu's paper referenced below.
 
-### Catmull-Clark Subdivision
+### *Catmull-Clark Subdivision*
 The physical simulation above resulted in a mesh which was too jaggy. To fix this, we employed the classic Catmull-Clark algorithm whereby a surface is recursively subdivided and made incrementally smoother. For example, this image taken from [Wikipedia](https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface) depicts a cube which is made to increasingly approximate a sphere:
 ![GitHub Logo](/images/cat-clark.png)
 
 For a complete description of how the algorithm works, see the [Wikipedia article](https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface) mentioned above.
 
-### Procedurally Generated Noise 
+### *Procedurally Generated Noise*
 To add organic bumps to and dune-like geometries to our desert we implemented a form of noise generation where by course noise is combined with upsampling increasingly finer grained noise. Graphically, the basics of this algorithm can be depicted simply:
 ![GitHub Logo](/images/noise.png)
 
-### 4. Rendering
+### *Rendering*
 We converted the polygonal mesh of the floor which results from the above algorithms into a triangular mesh and render on the GPU using OpenGL.
 
 ## Configuration
