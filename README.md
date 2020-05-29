@@ -1,4 +1,6 @@
-# The Great Sand Dunes
+
+![GitHub Logo](/images/title.png)
+
 Physical simulation of sand particles to render photo realistic images of desert dunes and ripples. This was a course research project for CS 378H Computer Graphics Honors at UT Austin, which I completed in collaboration with my partner Rahul Krishnan.
 
 ## How It Works
