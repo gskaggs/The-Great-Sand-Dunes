@@ -11,15 +11,15 @@ To create ambitious desert geometries, we simulated the physics of wind-blown sa
 We represent the desert floor as 2D grid of height values which we call the *height map*.
 At each time step of the simulation, the value at row *i* and column *j* of the map is updated with the following equation:
 ![GitHub Logo](/images/hmap.png)
-where ![equation](https://latex.codecogs.com/gif.latex?n_d) is the number of particles deposited at that point, ![equation](https://latex.codecogs.com/gif.latex?n_b) is the number of particles leaving that point, and ![equation](https://latex.codecogs.com/gif.latex?%5Cdelta) is the diameter of any given particle. 
-![equation](https://latex.codecogs.com/gif.latex?n_d) is determined by particle collisions with the floor, while ![equation](https://latex.codecogs.com/gif.latex?n_b) is either 1 or 0 and determined with a pseudo random number generator.
+where ![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B200%7D%20%5Cfn_cm%20%5Ctiny%20n_d) is the number of particles deposited at that point, ![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B200%7D%20%5Cfn_cm%20%5Ctiny%20n_b) is the number of particles leaving that point, and ![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B200%7D%20%5Cfn_cm%20%5Ctiny%20%5Cdelta) is the diameter of any given particle. 
+![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B200%7D%20%5Cfn_cm%20%5Ctiny%20n_d) is determined by particle collisions with the floor, while ![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B200%7D%20%5Cfn_cm%20%5Ctiny%20n_b) is either 1 or 0 and determined with a pseudo random number generator.
 
 **Particles:**
 The particles are stored in a linked list. At each time step their individual velocities and positions are updated with the following equations:
 
 ![GitHub Logo](/images/particle.png)
 
-where the ![equation](https://latex.codecogs.com/gif.latex?F_g) is the force of gravity and ![equation](https://latex.codecogs.com/gif.latex?F_d) is the force of drag from the wind.
+where the ![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B200%7D%20%5Cfn_cm%20%5Ctiny%20F_g) is the force of gravity and ![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B200%7D%20%5Cfn_cm%20%5Ctiny%20F_d) is the force of drag from the wind.
 A particle's initial velocity is determined by the wind velocity and direction, while a particle's initial position is the physical location of the height map point where it was born.
 
 **Collision:**
