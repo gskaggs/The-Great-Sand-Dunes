@@ -1,7 +1,7 @@
 
 ![GitHub Logo](/images/title.png)
 
-Physical simulation of sand particles to render photo realistic images of desert dunes and ripples. This was a course research project for CS 378H Computer Graphics Honors at UT Austin, which I completed in collaboration with my partner Rahul Krishnan.
+Physical simulation of sand particles to render photo-realistic images of desert dunes and ripples. This was a course research project for CS 378H Computer Graphics Honors at UT Austin, which I completed in collaboration with my partner Rahul Krishnan.
 
 ## How It Works
 To create ambitious desert geometries, we simulated the physics of wind-blown sand particles. Additionally, to improve the realism of the images produced, we also implemented Catmull-Clark subdivision and procedurally generated noise.
@@ -23,33 +23,33 @@ where the ![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B
 A particle's initial velocity is determined by the wind velocity and direction, while a particle's initial position is the physical location of the height map point where it was born.
 
 **Collision:**
-When a particle collides with the floor, it's velocity is attenuated and then redirected upwards.
-Then it can either stay alive and bounce if the magnitude of its resulting velocity is greater than some epsilon or it can be deposited at that point in the floor otherwise.
+When a particle collides with the floor, its velocity is attenuated and then redirected upwards.
+Then it can either stay alive and bounce if the magnitude of its resulting velocity is greater than some epsilon, or it can be deposited at that point in the floor otherwise.
 
 For more details regarding any aspect of the physical simulation we did please see Wang and Hu's paper referenced below.
 
 ### *Catmull-Clark Subdivision*
-The physical simulation above resulted in a mesh which was too jaggy. To fix this, we implemented the classic Catmull-Clark algorithm whereby a surface is recursively subdivided and made incrementally smoother. For example, this image taken from [Wikipedia](https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface) depicts a cube which is made to increasingly approximate a sphere:
+The physical simulation above resulted in a mesh which was very polygonal. You could see individual triangles like how models were rendered on old game consoles such as the N64. To fix this, we implemented the classic Catmull-Clark algorithm whereby a surface is recursively subdivided and made incrementally smoother. For example, this image taken from [Wikipedia](https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface) depicts a cube which is made to increasingly approximate a sphere:
 ![GitHub Logo](/images/cat-clark.png)
 
 For a complete description of how the algorithm works, see the [Wikipedia article](https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface) mentioned above.
 
 ### *Procedurally Generated Noise*
-To add organic bumps to and dune-like geometries to our desert we implemented a form of noise generation whereby course noise is combined with upsampling increasingly finer grained noise. Graphically, the basics of this algorithm can be depicted simply:
+To add organic bumps and dune-like geometries to our desert, we implemented a form of noise generation whereby coarse noise is combined with upsampling increasingly finer grained noise. Graphically, the basics of this algorithm can be depicted simply:
 ![GitHub Logo](/images/noise.png)
 
 ### *Rendering*
 We converted the polygonal mesh of the floor which results from the above algorithms into a triangular mesh which we rendered on the GPU using OpenGL.
 
 ## Configuration
-To modulate the simulation's configuration edit *src/config.h*. We especially recommend modifying the values for:
+To modulate the simulation's configuration, you can edit [*src/config.h*](/src/config.h). We especially recommend modifying the values for:
 * hmap_resolution
 * fatten
 * ffrac
 * num_levels 
 * subdivs
 
-where **hmap_resolution** determines the density of height map points in the simulation, **fatten** is the friction bouncing particles experience in the normal direction, **ffrac** is the friction bouncing particles experience in the tangential direction, **num_levels** is the number of levels used in the procedural noise generation, and **subdivs** is the number of subdivision layers used in the Catmull-Clark algorithm.
+where **hmap_resolution** determines the density of height map points in the simulation, **fatten** is the friction that bouncing particles experience in the normal direction, **ffrac** is the friction that bouncing particles experience in the tangential direction, **num_levels** is the number of levels used in the procedural noise generation, and **subdivs** is the number of subdivision layers used in the Catmull-Clark algorithm.
 
 ## Installation
 This demo was primarily intended to run on MacOS. As such, the instructions below are intended for running the demo on MacOS only.
@@ -67,7 +67,7 @@ and run `source ~/.bashrc` (or whatever config file you use). Note that you migh
 - `brew install glew`
 - `brew install glfw`
 
-Finally, you need to modify one of the cmake files to configure the directory that it will find the `glew` library. To do so, open the file [cmake/gl3.cmake](/cmake/gl3.cmake#L3) and modify lines 3 & 4 with the directory that the associated files are located. For example, since brew installed version 2.1.0_1 for me, located at "/usr/local/Cellar/glew/2.1.0_1/", I would have these lines read something like:
+Finally, you need to modify one of the cmake files to configure the directory that it will find the `glew` library. To do so, open the file [cmake/gl3.cmake](/cmake/gl3.cmake#L3) and modify lines 3 & 4 with the directory that the associated files are located. For example, since brew installed version 2.1.0_1 for me, located at "/usr/local/Cellar/glew/2.1.0_1/", I would have these lines read:
 
 ```
 set(GLEW_INCLUDE_DIRS "/usr/local/Cellar/glew/2.1.0_1/include")
