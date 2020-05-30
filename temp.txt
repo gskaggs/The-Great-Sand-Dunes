@@ -1,4 +1,0 @@
-export CC=/usr/local/Cellar/gcc/9.3.0_1/bin/gcc-9
-export CXX=/usr/local/Cellar/gcc/9.3.0_1/bin/g++-9
-alias gcc="/usr/local/Cellar/gcc/9.3.0_1/bin/gcc-9"
-alias g++="/usr/local/Cellar/gcc/9.3.0_1/bin/g++-9"

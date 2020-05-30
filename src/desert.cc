@@ -15,6 +15,8 @@ int numParticles = 0;
 int interParticles = 0;
 int bounce = 0;
 int died = 0;
+
+// constants for simulation
 double sa = PI/8*grain_size*grain_size;
 double cds = 0.48;
 double rho = 1.225;
@@ -22,6 +24,7 @@ double rho = 1.225;
 // Macros from competitive programming :-)
 #define FOR(i,a,b) for (int i = (a); i < (b); ++i)
 #define F0R(i,a) FOR(i,0,a)
+#define debug_print false
 
 // My implementation of the Catmull-Clark algorithm
 std::vector<std::vector<glm::dvec4>> Floor::cat_cull(std::vector<std::vector<glm::dvec4>>& p) {
@@ -443,8 +446,10 @@ void Desert::getFloor(std::vector<glm::vec4>& verts, std::vector<glm::uvec3>& fa
     floor.getFloor(verts, faces);
 
     // Analytic Data for Debugging
-    std::cout << "LIVING PARTICAULS: " << numParticles << std::endl;
-    std::cout << "INTERSECTED WITH FLOOR: " << interParticles << std::endl;
-    std::cout << "BOONCED: " << bounce << std::endl;
-    std::cout << "OVERFLOW: " << died << std::endl;
+    if(debug_print) {
+        std::cout << "LIVING PARTICLES: " << numParticles << std::endl;
+        std::cout << "INTERSECTED WITH FLOOR: " << interParticles << std::endl;
+        std::cout << "BOUNCED: " << bounce << std::endl;
+        std::cout << "OVERFLOW: " << died << std::endl;
+    }
 }

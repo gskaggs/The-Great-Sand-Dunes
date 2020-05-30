@@ -21,6 +21,8 @@
 int window_width = 800, window_height = 600;
 const std::string window_title = "DOON";
 
+
+// shader inline imports
 const char* vertex_shader =
 #include "shaders/default.vert"
 ;
@@ -45,6 +47,7 @@ void ErrorCallback(int error, const char* description) {
 	std::cerr << "GLFW Error: " << description << "\n";
 }
 
+// window setup
 GLFWwindow* init_glefw()
 {
 	if (!glfwInit())
@@ -78,6 +81,7 @@ int main(int argc, char* argv[])
 	std::vector<glm::vec4> floor_vertices;
 	std::vector<glm::uvec3> floor_faces;
 
+    // perform aeolian sand simulation
     Desert desert(hmap_width, hmap_height);
     for(double t = 0; t < end_time; t += delta_t) {
         desert.updateSimulation();
@@ -125,9 +129,9 @@ int main(int argc, char* argv[])
 	auto std_light = make_uniform("light_position", lp_data);
 
 	std::function<float()> alpha_data = [&gui]() {
-		static const float transparet = 0.5; // Alpha constant goes here
-		static const float non_transparet = 1.0;
-		return non_transparet;
+		static const float transparent = 0.5; // Alpha constant goes here
+		static const float non_transparent = 1.0;
+		return non_transparent;
 	};
 	auto object_alpha = make_uniform("alpha", alpha_data);
 
@@ -166,9 +170,7 @@ int main(int argc, char* argv[])
 		if (draw_floor) {
 			floor_pass.setup();
 			// Draw our triangles.
-			CHECK_GL_ERROR(glDrawElements(GL_TRIANGLES,
-			                              floor_faces.size() * 3,
-			                              GL_UNSIGNED_INT, 0));
+			CHECK_GL_ERROR(glDrawElements(GL_TRIANGLES, floor_faces.size() * 3, GL_UNSIGNED_INT, 0));
 		}
 
 		// Poll and swap.

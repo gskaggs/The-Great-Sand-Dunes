@@ -61,6 +61,7 @@ void GUI::keyCallback(int key, int scancode, int action, int mods)
 
 void GUI::mousePosCallback(double mouse_x, double mouse_y)
 {
+    // computations for mouse dragging for camera movement
 	last_x_ = current_x_;
 	last_y_ = current_y_;
 	current_x_ = mouse_x;
