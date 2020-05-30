@@ -11,15 +11,15 @@ To create ambitious desert geometries, we simulated the physics of wind-blown sa
 We represent the desert floor as 2D grid of height values which we call the *height map*.
 At each time step of the simulation, the value at row *i* and column *j* of the map is updated with the following equation:
 ![GitHub Logo](/images/hmap.png)
-where nd is the number of particles deposited at that point, nb is number of particles leaving that point, and delta is the diameter of any given particle. 
-nd is determined by particle collisions with the floor, while nb is either 1 or 0 and determined with a pseudo random number generator.
+where ![equation](https://latex.codecogs.com/gif.latex?n_d) is the number of particles deposited at that point, ![equation](https://latex.codecogs.com/gif.latex?n_b) is the number of particles leaving that point, and ![equation](https://latex.codecogs.com/gif.latex?%5Cdelta) is the diameter of any given particle. 
+![equation](https://latex.codecogs.com/gif.latex?n_d) is determined by particle collisions with the floor, while ![equation](https://latex.codecogs.com/gif.latex?n_b) is either 1 or 0 and determined with a pseudo random number generator.
 
 **Particles:**
 The particles are stored in a linked list. At each time step their individual velocities and positions are updated with the following equations:
 
 ![GitHub Logo](/images/particle.png)
 
-where the Fg is the force of gravity and Fd is the force of drag from the wind.
+where the ![equation](https://latex.codecogs.com/gif.latex?F_g) is the force of gravity and ![equation](https://latex.codecogs.com/gif.latex?F_d) is the force of drag from the wind.
 A particle's initial velocity is determined by the wind velocity and direction, while a particle's initial position is the physical location of the height map point where it was born.
 
 **Collision:**
@@ -49,7 +49,7 @@ To modulate the simulation's configuration edit *src/config.h*. We especially re
 * num_levels 
 * subdivs
 
-where **hmap_resolution** determines the density of height map points in the simulation, **fatten** is the friction bouncing particles experience in the normal direction, **frac** is the friction bouncing particles experience in the tangential direction, **num_levels** is the number of levels used in the procedural noise generation, and **subdivs** is the number of subdivision layers used in the Catmull-Clark algorithm.
+where **hmap_resolution** determines the density of height map points in the simulation, **fatten** is the friction bouncing particles experience in the normal direction, **ffrac** is the friction bouncing particles experience in the tangential direction, **num_levels** is the number of levels used in the procedural noise generation, and **subdivs** is the number of subdivision layers used in the Catmull-Clark algorithm.
 
 ## Execution
 The script *build.sh* builds the project using the cmake settings we've configured for MacOS. Once successfully built, the project can be run with the script *run.sh*.
