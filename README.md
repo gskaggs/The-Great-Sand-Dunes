@@ -51,9 +51,33 @@ To modulate the simulation's configuration edit *src/config.h*. We especially re
 
 where **hmap_resolution** determines the density of height map points in the simulation, **fatten** is the friction bouncing particles experience in the normal direction, **ffrac** is the friction bouncing particles experience in the tangential direction, **num_levels** is the number of levels used in the procedural noise generation, and **subdivs** is the number of subdivision layers used in the Catmull-Clark algorithm.
 
+## Installation
+This demo was primarily intended to run on MacOS. As such, the instructions below are intended for running the demo on MacOS only.
+
+There are a few pre-requisites you need to set up before executing the demo. First, you need to run `brew install gcc` to install gcc. Then, because MacOS automatically aliases `gcc` to `clang`, you need to modify your configuration file (`~/.bashrc` for example) by adding the following four lines:
+
+```
+export CC=/usr/local/Cellar/gcc/9.2.0_3/bin/gcc-9
+export CXX=/usr/local/Cellar/gcc/9.2.0_3/bin/g++-9
+alias gcc="/usr/local/Cellar/gcc/9.2.0_3/bin/gcc-9"
+alias g++="/usr/local/Cellar/gcc/9.2.0_3/bin/g++-9" 
+```
+
+and run `source ~/.bashrc` (or whatever config file you use). Note that you might have to change the version number from 9.2.0_3 to whatever version of gcc you have installed on your machine. Then, you need to install `glew` and `glfw` by:
+- `brew install glew`
+- `brew install glfw`
+
+Finally, you need to modify one of the cmake files to configure the directory that it will find the `glew` library. To do so, open the file [cmake/gl3.cmake](/cmake/gl3.cmake#L3) and modify lines 3 & 4 with the directory that the associated files are located. For example, since brew installed version 2.1.0_1 for me, located at "/usr/local/Cellar/glew/2.1.0_1/", I would have these lines read something like:
+
+```
+set(GLEW_INCLUDE_DIRS "/usr/local/Cellar/glew/2.1.0_1/include")
+set(GLEW_LIBRARIES "/usr/local/Cellar/glew/2.1.0_1/lib/libGLEW.a")
+```
+
+And with that, you should be all set for executing the demo! Now just clone the repository and execute it as described below.
+
 ## Execution
-The script *build.sh* builds the project using the cmake settings we've configured for MacOS. Once successfully built, the project can be run with the script *run.sh*.
-(You may need to modify our Makefiles if you're not using MacOS.)
+The script *build.sh* builds the project using the cmake settings we've configured for MacOS. Once successfully built, the project can be run with the script *run.sh*. This should open a new window displaying the sand dunes!
 
 ## Example Images
 #### Sand Simulation With Catmull-Clark:
